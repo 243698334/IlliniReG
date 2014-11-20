@@ -4,7 +4,22 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-AFRaptureXMLRequestOperation.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-RESideMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-RaptureXML.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -17,12 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>599C629A4F6FC7D1D95A9853</key>
+		<key>092E6B9FCB671DA18567E382</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>71DAFA71F0C6352D56638838</key>
+		<key>1BF957B84BFCEC055609B541</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>25BCCDE93DBA87BD74EE4365</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5A4DD82192F0C017F0FAFF41</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B0C84FDD652958636CEFC9B0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
