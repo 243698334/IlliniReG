@@ -28,5 +28,25 @@
     [super tearDown];
 }
 
+- (void)testYearList {
+    NSArray *yearList = [explorer retrieveList];
+    XCTAssertEqual(12, [yearList count]);
+}
+
+- (void)testSemesterList {
+    
+}
+
+- (void)testSubjectList {
+    
+}
+
+- (void)testCourseList {
+    
+}
+
+- (void)testSectionList {
+    
+}
 
 @end

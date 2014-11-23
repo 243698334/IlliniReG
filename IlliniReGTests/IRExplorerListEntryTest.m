@@ -20,10 +20,7 @@
 
 - (void)setUp {
     [super setUp];
-    entry = [[IRExplorerListEntry alloc] initWithEntryType:@"subject"
-                                                     title:@"Computer Science"
-                                                  subtitle:@"CS"
-                                              nextLayerURL:@"http://courses.illinois.edu/cisapp/explorer/schedule/2015/spring/CS.xml"];
+    entry = [[IRExplorerListEntry alloc] initWithXMLID:@"125" text:@"Intro to Computer Science" href:@"http://courses.illinois.edu/cisapp/explorer/schedule/2015/spring/CS/125.xml" type:@"course"];
 }
 
 - (void)tearDown {
@@ -32,19 +29,19 @@
 }
 
 - (void)testExplorerEntryType {
-    XCTAssertEqual(SUBJECT, [entry type]);
+    XCTAssertEqual(COURSE, [entry type]);
 }
 
 - (void)testTitle {
-    XCTAssertEqual(@"Computer Science", [entry title]);
+    XCTAssertEqual(@"125", [entry title]);
 }
 
 - (void)testSubtitle {
-    XCTAssertEqual(@"CS", [entry subtitle]);
+    XCTAssertEqual(@"Intro to Computer Science", [entry subtitle]);
 }
 
 - (void)testNextLayerURL {
-    XCTAssertEqual(@"http://courses.illinois.edu/cisapp/explorer/schedule/2015/spring/CS.xml", [[entry nextLayerURL] absoluteString]);
+    XCTAssertEqual(@"http://courses.illinois.edu/cisapp/explorer/schedule/2015/spring/CS/125.xml", [[entry nextLayerURL] absoluteString]);
 }
 
 @end

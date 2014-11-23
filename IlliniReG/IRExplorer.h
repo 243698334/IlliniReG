@@ -17,7 +17,10 @@
     NSArray *lastRetrievedList;
 }
 
+extern NSString * const CISAPPAPIURL;
+
 - (NSArray *)retrieveLastList;
+- (NSArray *)retrieveList;
 - (NSArray *)retrieveListWithYear:(NSString *)year;
 - (NSArray *)retrieveListWithYear:(NSString *)year semester:(NSString *)semester;
 - (NSArray *)retrieveListWithYear:(NSString *)year semester:(NSString *)semester subject:(NSString *)subject;

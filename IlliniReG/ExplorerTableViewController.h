@@ -10,11 +10,4 @@
 
 @interface ExplorerTableViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, UIAlertViewDelegate>
 
-@property (nonatomic, strong, readonly) NSString *currentExplorerLayer;
-@property (nonatomic, strong, readwrite) NSMutableArray *currentEntries;
-
-@property (nonatomic, strong, readonly) UIProgressView *loadingProgressView;
-@property (nonatomic, assign) BOOL shouldDisplaySearchBar;
-
-
 @end

@@ -11,7 +11,6 @@
 		0E33B6451A19DB230036F636 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E33B6441A19DB230036F636 /* AppDelegate.m */; };
 		0E33B64B1A19DB230036F636 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E33B6491A19DB230036F636 /* Main.storyboard */; };
 		0E33B6501A19DB230036F636 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E33B64E1A19DB230036F636 /* LaunchScreen.xib */; };
-		0E33B65C1A19DB230036F636 /* IlliniReGTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E33B65B1A19DB230036F636 /* IlliniReGTests.m */; };
 		0E4C0F171A1C0643006B6940 /* IRExplorer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C0F161A1C0643006B6940 /* IRExplorer.m */; };
 		0E4C0F1A1A1C0ACA006B6940 /* IRExplorerListEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C0F191A1C0ACA006B6940 /* IRExplorerListEntry.m */; };
 		0E4C0F1C1A1C9D8F006B6940 /* IRExplorerListEntryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C0F1B1A1C9D8F006B6940 /* IRExplorerListEntryTest.m */; };
@@ -50,7 +49,6 @@
 		0E33B64F1A19DB230036F636 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		0E33B6551A19DB230036F636 /* IlliniReGTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IlliniReGTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E33B65A1A19DB230036F636 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0E33B65B1A19DB230036F636 /* IlliniReGTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IlliniReGTests.m; sourceTree = "<group>"; };
 		0E4C0F151A1C0643006B6940 /* IRExplorer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRExplorer.h; sourceTree = "<group>"; };
 		0E4C0F161A1C0643006B6940 /* IRExplorer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRExplorer.m; sourceTree = "<group>"; };
 		0E4C0F181A1C0ACA006B6940 /* IRExplorerListEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRExplorerListEntry.h; sourceTree = "<group>"; };
@@ -148,10 +146,9 @@
 		0E33B6581A19DB230036F636 /* IlliniReGTests */ = {
 			isa = PBXGroup;
 			children = (
-				0E33B65B1A19DB230036F636 /* IlliniReGTests.m */,
 				0E4C0F1B1A1C9D8F006B6940 /* IRExplorerListEntryTest.m */,
-				0E33B6591A19DB230036F636 /* Supporting Files */,
 				0E4C0F201A1CDEEC006B6940 /* IRExplorerTest.m */,
+				0E33B6591A19DB230036F636 /* Supporting Files */,
 			);
 			path = IlliniReGTests;
 			sourceTree = "<group>";
@@ -353,7 +350,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E33B65C1A19DB230036F636 /* IlliniReGTests.m in Sources */,
 				0E5D1A391A1A012600715AC5 /* MonitorTableViewController.m in Sources */,
 				0E5D1A3D1A1A014300715AC5 /* ExplorerTableViewController.m in Sources */,
 				0E4C0F211A1CDEEC006B6940 /* IRExplorerTest.m in Sources */,
@@ -478,6 +474,7 @@
 				INFOPLIST_FILE = IlliniReG/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -489,11 +486,13 @@
 				INFOPLIST_FILE = IlliniReG/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		0E33B6631A19DB230036F636 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53DDA61685F27DB71AAEFA65 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -513,6 +512,7 @@
 		};
 		0E33B6641A19DB230036F636 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70F271F57968D81A9E9EAE1A /* Pods.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (

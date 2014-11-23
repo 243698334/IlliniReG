@@ -13,14 +13,14 @@
 @property (nonatomic, strong, readwrite) NSString *currentExplorerLayer;
 @property (nonatomic, strong, readwrite) NSString *currentSelectedEntry;
 @property (nonatomic, strong, readwrite) UIProgressView *loadingProgressView;
-
 @property (nonatomic, strong) UIBarButtonItem *confirmButton;
 @property (nonatomic, strong) UISearchController *searchController;
 @property (nonatomic, strong) NSMutableArray *filteredSearchResults;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, assign) BOOL searchingInProgress;
-
 @property (nonatomic, assign) UIBackgroundTaskIdentifier backgroundProcess;
+@property (nonatomic, strong, readwrite) NSMutableArray *currentEntries;
+@property (nonatomic, assign) BOOL shouldDisplaySearchBar;
 
 @end
 
@@ -110,6 +110,22 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // No entries
     if ([self.currentEntries count] == 0) {
+        if (indexPath.row == 1) {
+            UITableViewCell *cell = [[UITableViewCell alloc] init];
+            if (self.searchingInProgress) {
+                cell.textLabel.text = NSLocalizedString(@"No Search Results", @"Empty Search Results Text");
+            } else {
+                cell.textLabel.text = NSLocalizedString(@"Network Error", @"Network Error Text");
+            }
+            cell.textLabel.textAlignment = NSTextAlignmentCenter;
+            cell.textLabel.textColor = [UIColor darkGrayColor];
+            return cell;
+        } else {
+            UITableViewCell *cell = [[UITableViewCell alloc] init];
+            return cell;
+        }
+    // Has entries
+    } else {
         
     }
     

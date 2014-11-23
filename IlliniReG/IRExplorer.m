@@ -8,9 +8,13 @@
 
 #import "IRExplorer.h"
 
-static NSString *CISAppAPIURL = @"http://courses.illinois.edu/cisapp/explorer/schedule.xml";
+NSString * const CISAPPAPIURL = @"http://courses.illinois.edu/cisapp/explorer/schedule.xml";
 
 @implementation IRExplorer
+
+- (NSArray *)retrieveList {
+    return [self retrieveListWithYear:nil semester:nil subject:nil course:nil];
+}
 
 - (NSArray *)retrieveListWithYear:(NSString *)year {
     return [self retrieveListWithYear:year semester:nil subject:nil course:nil];
@@ -29,9 +33,11 @@ static NSString *CISAppAPIURL = @"http://courses.illinois.edu/cisapp/explorer/sc
         [AFRaptureXMLRequestOperation XMLParserRequestOperationWithRequest:[NSURLRequest requestWithURL:retrieveListURL]
         success:^(NSURLRequest *request, NSHTTPURLResponse *response, RXMLElement *xmlElement) {
             retrievedList = [self parseXMLElementForList:xmlElement];
+            NSLog(@"success block");
         }
         failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, RXMLElement *xmlElement) {
             retrievedList = nil;
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
         }];
     [retrieveListOperation start];
     return retrievedList;
@@ -66,10 +72,11 @@ static NSString *CISAppAPIURL = @"http://courses.illinois.edu/cisapp/explorer/sc
 }
 
 - (NSArray *)parseXMLElementForList:(RXMLElement *)xmlElement {
+    NSLog(@"parseXMLElementForList");
     NSMutableArray *list = [[NSMutableArray alloc] init];
     IRExplorerListEntryType listEntryType = [IRExplorerListEntry xmlTagToType:xmlElement.tag] + 1;
     [xmlElement iterate:[IRExplorerListEntry typeToXMLTag:listEntryType plural:YES] usingBlock: ^(RXMLElement *entry) {
-        IRExplorerListEntry *currentEntry = [[IRExplorerListEntry alloc] initWithXMLID:[entry attribute:@"id"] text:entry.text href:[entry attribute:@"href"] type:[IRExplorerListEntry typeToXMLTag:listEntryType plural:NO]];
+        IRExplorerListEntry *currentEntry = [[IRExplorerListEntry alloc] initWithXMLID:[entry attribute:@"id"] text:entry.text href:[entry attribute:@"href"] type:entry.tag];
         [list addObject:currentEntry];
     }];
     return list;
