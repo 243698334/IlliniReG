@@ -12,7 +12,6 @@
 		0E33B6451A19DB230036F636 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E33B6441A19DB230036F636 /* AppDelegate.m */; };
 		0E33B64B1A19DB230036F636 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E33B6491A19DB230036F636 /* Main.storyboard */; };
 		0E33B6501A19DB230036F636 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E33B64E1A19DB230036F636 /* LaunchScreen.xib */; };
-		0E4C0F171A1C0643006B6940 /* IRExplorerOld.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C0F161A1C0643006B6940 /* IRExplorerOld.m */; };
 		0E4C0F1A1A1C0ACA006B6940 /* IRExplorerListEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C0F191A1C0ACA006B6940 /* IRExplorerListEntry.m */; };
 		0E4C0F1C1A1C9D8F006B6940 /* IRExplorerListEntryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C0F1B1A1C9D8F006B6940 /* IRExplorerListEntryTest.m */; };
 		0E4C0F1F1A1CBFF8006B6940 /* IRExplorerSectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C0F1E1A1CBFF8006B6940 /* IRExplorerSectionItem.m */; };
@@ -52,8 +51,6 @@
 		0E33B64F1A19DB230036F636 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		0E33B6551A19DB230036F636 /* IlliniReGTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IlliniReGTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E33B65A1A19DB230036F636 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0E4C0F151A1C0643006B6940 /* IRExplorerOld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRExplorerOld.h; sourceTree = "<group>"; };
-		0E4C0F161A1C0643006B6940 /* IRExplorerOld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRExplorerOld.m; sourceTree = "<group>"; };
 		0E4C0F181A1C0ACA006B6940 /* IRExplorerListEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRExplorerListEntry.h; sourceTree = "<group>"; };
 		0E4C0F191A1C0ACA006B6940 /* IRExplorerListEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRExplorerListEntry.m; sourceTree = "<group>"; };
 		0E4C0F1B1A1C9D8F006B6940 /* IRExplorerListEntryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRExplorerListEntryTest.m; sourceTree = "<group>"; };
@@ -126,8 +123,6 @@
 				0E33B64E1A19DB230036F636 /* LaunchScreen.xib */,
 				0E33B6491A19DB230036F636 /* Main.storyboard */,
 				0E33B63F1A19DB230036F636 /* Supporting Files */,
-				0E4C0F151A1C0643006B6940 /* IRExplorerOld.h */,
-				0E4C0F161A1C0643006B6940 /* IRExplorerOld.m */,
 				0E4C0F181A1C0ACA006B6940 /* IRExplorerListEntry.h */,
 				0E4C0F191A1C0ACA006B6940 /* IRExplorerListEntry.m */,
 				0E4C0F1D1A1CBFF8006B6940 /* IRExplorerSectionItem.h */,
@@ -339,7 +334,6 @@
 			files = (
 				0E4C0F1F1A1CBFF8006B6940 /* IRExplorerSectionItem.m in Sources */,
 				0E33B6451A19DB230036F636 /* AppDelegate.m in Sources */,
-				0E4C0F171A1C0643006B6940 /* IRExplorerOld.m in Sources */,
 				0E5D1A801A1A18A700715AC5 /* RootViewController.m in Sources */,
 				0E33B6421A19DB230036F636 /* main.m in Sources */,
 				0E5D1AC11A1AC6AD00715AC5 /* ExplorerViewController.m in Sources */,
