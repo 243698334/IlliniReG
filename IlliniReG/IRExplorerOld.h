@@ -2,15 +2,17 @@
 //  IRExplorer.h
 //  IlliniReG
 //
-//  Created by Kevin Yufei Chen on 11/27/14.
+//  Created by Kevin Yufei Chen on 11/18/14.
 //  Copyright (c) 2014 Kevin Yufei Chen. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <RaptureXML/RXMLElement.h>
+#import <AFRaptureXMLRequestOperation/AFRaptureXMLRequestOperation.h>
 #import "IRExplorerListEntry.h"
 #import "IRExplorerSectionItem.h"
 
-@interface IRExplorer : NSObject <NSXMLParserDelegate> {
+@interface IRExplorerOld : NSObject {
     NSArray *retrievedList;
     NSArray *lastRetrievedList;
 }

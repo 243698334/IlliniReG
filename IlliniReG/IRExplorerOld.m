@@ -2,19 +2,15 @@
 //  IRExplorer.m
 //  IlliniReG
 //
-//  Created by Kevin Yufei Chen on 11/27/14.
+//  Created by Kevin Yufei Chen on 11/18/14.
 //  Copyright (c) 2014 Kevin Yufei Chen. All rights reserved.
 //
 
-#import "IRExplorer.h"
+#import "IRExplorerOld.h"
 
 NSString * const CISAPPAPIURL = @"http://courses.illinois.edu/cisapp/explorer/schedule.xml";
 
-@implementation IRExplorer
-
-- (NSArray *)retrieveLastList {
-    return lastRetrievedList;
-}
+@implementation IRExplorerOld
 
 - (NSArray *)retrieveList {
     return [self retrieveListWithYear:nil semester:nil subject:nil course:nil];
@@ -31,7 +27,24 @@ NSString * const CISAPPAPIURL = @"http://courses.illinois.edu/cisapp/explorer/sc
 }
 
 - (NSArray *)retrieveListWithYear:(NSString *)year semester:(NSString *)semester subject:(NSString *)subject course:(NSString *)course {
-    return nil;
+    lastRetrievedList = [retrievedList copy];
+    NSURL *retrieveListURL = [self constructURLWithWithYear:year semester:semester subject:subject course:course section:nil];
+    AFRaptureXMLRequestOperation *retrieveListOperation =
+        [AFRaptureXMLRequestOperation XMLParserRequestOperationWithRequest:[NSURLRequest requestWithURL:retrieveListURL]
+        success:^(NSURLRequest *request, NSHTTPURLResponse *response, RXMLElement *xmlElement) {
+            retrievedList = [self parseXMLElementForList:xmlElement];
+            NSLog(@"success block");
+        }
+        failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, RXMLElement *xmlElement) {
+            retrievedList = nil;
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }];
+    [retrieveListOperation start];
+    return retrievedList;
+}
+
+- (NSArray *)retrieveLastList {
+    return lastRetrievedList;
 }
 
 - (IRExplorerSectionItem *)retrieveItemWithYear:(NSString *)year semester:(NSString *)semester subject:(NSString *)subject course:(NSString *)course section:(NSString *)section {
@@ -58,6 +71,19 @@ NSString * const CISAPPAPIURL = @"http://courses.illinois.edu/cisapp/explorer/sc
     return [[NSURL alloc] initWithString:requestedURL];
 }
 
+- (NSArray *)parseXMLElementForList:(RXMLElement *)xmlElement {
+    NSLog(@"parseXMLElementForList");
+    NSMutableArray *list = [[NSMutableArray alloc] init];
+    IRExplorerListEntryType listEntryType = [IRExplorerListEntry xmlTagToType:xmlElement.tag] + 1;
+    [xmlElement iterate:[IRExplorerListEntry typeToXMLTag:listEntryType plural:YES] usingBlock: ^(RXMLElement *entry) {
+        IRExplorerListEntry *currentEntry = [[IRExplorerListEntry alloc] initWithXMLID:[entry attribute:@"id"] text:entry.text href:[entry attribute:@"href"] type:entry.tag];
+        [list addObject:currentEntry];
+    }];
+    return list;
+}
 
+- (IRExplorerSectionItem *)parseXMLElementForItem:(RXMLElement *)xmlElement {
+    return nil;
+}
 
 @end

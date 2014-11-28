@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
-#import "IRExplorer.h"
+#import "IRExplorerOld.h"
 
 @interface IRExplorerTest : XCTestCase {
-    IRExplorer *explorer;
+    IRExplorerOld *explorer;
 }
 
 @end
@@ -20,7 +20,7 @@
 
 - (void)setUp {
     [super setUp];
-    explorer = [[IRExplorer alloc] init];
+    explorer = [[IRExplorerOld alloc] init];
 }
 
 - (void)tearDown {
