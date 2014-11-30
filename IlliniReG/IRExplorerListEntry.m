@@ -46,31 +46,38 @@
 }
 
 - (instancetype)initWithXMLID:(NSString *)xmlID text:(NSString *)text href:(NSString *)href type:(NSString *)type {
-    IRExplorerListEntryType currentType = [IRExplorerListEntry xmlTagToType:type];
-    switch (currentType) {
-        case YEAR:
-            return [self initWithEntryType:currentType title:xmlID subtitle:nil nextLayerURL:[[NSURL alloc] initWithString:href]];
-        case SEMESTER:
-            return [self initWithEntryType:currentType title:text subtitle:nil nextLayerURL:[[NSURL alloc] initWithString:href]];
-        case SUBJECT:
-            return [self initWithEntryType:currentType title:xmlID subtitle:text nextLayerURL:[[NSURL alloc] initWithString:href]];
-        case COURSE:
-            return [self initWithEntryType:currentType title:xmlID subtitle:text nextLayerURL:[[NSURL alloc] initWithString:href]];
-        case SECTION:
-            return [self initWithEntryType:currentType title:text subtitle:xmlID nextLayerURL:[[NSURL alloc] initWithString:href]];
-        default:
-            return nil;
-    }
-}
-
-- (instancetype)initWithEntryType:(IRExplorerListEntryType)type title:(NSString *)title subtitle:(NSString *)subTitle nextLayerURL:(NSURL *)nextLayerURL {
     if (self = [self init]) {
-        self.type = type;
-        self.title = title;
-        self.subtitle = subTitle;
-        self.nextLayerURL = nextLayerURL;
+        IRExplorerListEntryType currentType = [IRExplorerListEntry xmlTagToType:type];
+        self.xmlID = xmlID;
+        self.xmlText = text;
+        switch (currentType) {
+            case YEAR:
+                [self setType:currentType title:xmlID subtitle:nil subLayerURL:[[NSURL alloc] initWithString:href]];
+                break;
+            case SEMESTER:
+                [self setType:currentType title:text subtitle:nil subLayerURL:[[NSURL alloc] initWithString:href]];
+                break;
+            case SUBJECT:
+                [self setType:currentType title:xmlID subtitle:text subLayerURL:[[NSURL alloc] initWithString:href]];
+                break;
+            case COURSE:
+                [self setType:currentType title:xmlID subtitle:text subLayerURL:[[NSURL alloc] initWithString:href]];
+                break;
+            case SECTION:
+                [self setType:currentType title:text subtitle:xmlID subLayerURL:[[NSURL alloc] initWithString:href]];
+                break;
+            default:
+                break;
+        }
     }
     return self;
+}
+
+- (void)setType:(IRExplorerListEntryType)type title:(NSString *)title subtitle:(NSString *)subtitle subLayerURL:(NSURL *)subLayerURL {
+    self.type = type;
+    self.title = title;
+    self.subtitle = subtitle;
+    self.subLayerURL = subLayerURL;
 }
 
 @end

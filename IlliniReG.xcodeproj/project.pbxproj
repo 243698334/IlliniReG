@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0E2494E31A27017A00F0905B /* IRExplorer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2494E21A27017A00F0905B /* IRExplorer.m */; };
+		0E25E7C31A29A2D200AA9D77 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E25E7C21A29A2D200AA9D77 /* ProfileViewController.m */; };
 		0E33B6421A19DB230036F636 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E33B6411A19DB230036F636 /* main.m */; };
 		0E33B6451A19DB230036F636 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E33B6441A19DB230036F636 /* AppDelegate.m */; };
 		0E33B64B1A19DB230036F636 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E33B6491A19DB230036F636 /* Main.storyboard */; };
@@ -18,14 +19,13 @@
 		0E4C0F211A1CDEEC006B6940 /* IRExplorerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C0F201A1CDEEC006B6940 /* IRExplorerTest.m */; };
 		0E5D1A381A1A012600715AC5 /* MonitorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5D1A371A1A012600715AC5 /* MonitorTableViewController.m */; };
 		0E5D1A391A1A012600715AC5 /* MonitorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5D1A371A1A012600715AC5 /* MonitorTableViewController.m */; };
-		0E5D1A3C1A1A014300715AC5 /* ExplorerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5D1A3B1A1A014300715AC5 /* ExplorerTableViewController.m */; };
-		0E5D1A3D1A1A014300715AC5 /* ExplorerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5D1A3B1A1A014300715AC5 /* ExplorerTableViewController.m */; };
+		0E5D1A3C1A1A014300715AC5 /* ExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5D1A3B1A1A014300715AC5 /* ExplorerViewController.m */; };
+		0E5D1A3D1A1A014300715AC5 /* ExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5D1A3B1A1A014300715AC5 /* ExplorerViewController.m */; };
 		0E5D1A401A1A029000715AC5 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5D1A3F1A1A029000715AC5 /* HomeViewController.m */; };
 		0E5D1A411A1A029000715AC5 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5D1A3F1A1A029000715AC5 /* HomeViewController.m */; };
 		0E5D1A801A1A18A700715AC5 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5D1A7F1A1A18A700715AC5 /* RootViewController.m */; };
 		0E5D1A831A1A192D00715AC5 /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5D1A821A1A192D00715AC5 /* SideMenuViewController.m */; };
 		0E5D1ABD1A1A1DE100715AC5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E5D1ABC1A1A1DE100715AC5 /* Images.xcassets */; };
-		0E5D1AC11A1AC6AD00715AC5 /* ExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5D1AC01A1AC6AD00715AC5 /* ExplorerViewController.m */; };
 		B3E6F105361539E5B63CADB9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3F796071ED070BE4BE93864 /* libPods.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -42,6 +42,8 @@
 /* Begin PBXFileReference section */
 		0E2494E11A27017A00F0905B /* IRExplorer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRExplorer.h; sourceTree = "<group>"; };
 		0E2494E21A27017A00F0905B /* IRExplorer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRExplorer.m; sourceTree = "<group>"; };
+		0E25E7C11A29A2D200AA9D77 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		0E25E7C21A29A2D200AA9D77 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		0E33B63C1A19DB230036F636 /* IlliniReG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IlliniReG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E33B6401A19DB230036F636 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E33B6411A19DB230036F636 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -59,8 +61,8 @@
 		0E4C0F201A1CDEEC006B6940 /* IRExplorerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRExplorerTest.m; sourceTree = "<group>"; };
 		0E5D1A361A1A012600715AC5 /* MonitorTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonitorTableViewController.h; sourceTree = "<group>"; };
 		0E5D1A371A1A012600715AC5 /* MonitorTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonitorTableViewController.m; sourceTree = "<group>"; };
-		0E5D1A3A1A1A014300715AC5 /* ExplorerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExplorerTableViewController.h; sourceTree = "<group>"; };
-		0E5D1A3B1A1A014300715AC5 /* ExplorerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExplorerTableViewController.m; sourceTree = "<group>"; };
+		0E5D1A3A1A1A014300715AC5 /* ExplorerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExplorerViewController.h; sourceTree = "<group>"; };
+		0E5D1A3B1A1A014300715AC5 /* ExplorerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExplorerViewController.m; sourceTree = "<group>"; };
 		0E5D1A3E1A1A029000715AC5 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		0E5D1A3F1A1A029000715AC5 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		0E5D1A7E1A1A18A700715AC5 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
@@ -68,8 +70,6 @@
 		0E5D1A811A1A192D00715AC5 /* SideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuViewController.h; sourceTree = "<group>"; };
 		0E5D1A821A1A192D00715AC5 /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuViewController.m; sourceTree = "<group>"; };
 		0E5D1ABC1A1A1DE100715AC5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		0E5D1ABF1A1AC6AD00715AC5 /* ExplorerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExplorerViewController.h; sourceTree = "<group>"; };
-		0E5D1AC01A1AC6AD00715AC5 /* ExplorerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExplorerViewController.m; sourceTree = "<group>"; };
 		53DDA61685F27DB71AAEFA65 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		70F271F57968D81A9E9EAE1A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E3F796071ED070BE4BE93864 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,10 +164,10 @@
 		0E5D1ABE1A1ABFAA00715AC5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0E5D1A3A1A1A014300715AC5 /* ExplorerTableViewController.h */,
-				0E5D1A3B1A1A014300715AC5 /* ExplorerTableViewController.m */,
-				0E5D1ABF1A1AC6AD00715AC5 /* ExplorerViewController.h */,
-				0E5D1AC01A1AC6AD00715AC5 /* ExplorerViewController.m */,
+				0E25E7C11A29A2D200AA9D77 /* ProfileViewController.h */,
+				0E25E7C21A29A2D200AA9D77 /* ProfileViewController.m */,
+				0E5D1A3A1A1A014300715AC5 /* ExplorerViewController.h */,
+				0E5D1A3B1A1A014300715AC5 /* ExplorerViewController.m */,
 				0E5D1A3E1A1A029000715AC5 /* HomeViewController.h */,
 				0E5D1A3F1A1A029000715AC5 /* HomeViewController.m */,
 				0E5D1A361A1A012600715AC5 /* MonitorTableViewController.h */,
@@ -336,13 +336,13 @@
 				0E33B6451A19DB230036F636 /* AppDelegate.m in Sources */,
 				0E5D1A801A1A18A700715AC5 /* RootViewController.m in Sources */,
 				0E33B6421A19DB230036F636 /* main.m in Sources */,
-				0E5D1AC11A1AC6AD00715AC5 /* ExplorerViewController.m in Sources */,
-				0E5D1A3C1A1A014300715AC5 /* ExplorerTableViewController.m in Sources */,
+				0E5D1A3C1A1A014300715AC5 /* ExplorerViewController.m in Sources */,
 				0E2494E31A27017A00F0905B /* IRExplorer.m in Sources */,
 				0E4C0F1A1A1C0ACA006B6940 /* IRExplorerListEntry.m in Sources */,
 				0E5D1A831A1A192D00715AC5 /* SideMenuViewController.m in Sources */,
 				0E5D1A381A1A012600715AC5 /* MonitorTableViewController.m in Sources */,
 				0E5D1A401A1A029000715AC5 /* HomeViewController.m in Sources */,
+				0E25E7C31A29A2D200AA9D77 /* ProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,7 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E5D1A391A1A012600715AC5 /* MonitorTableViewController.m in Sources */,
-				0E5D1A3D1A1A014300715AC5 /* ExplorerTableViewController.m in Sources */,
+				0E5D1A3D1A1A014300715AC5 /* ExplorerViewController.m in Sources */,
 				0E4C0F211A1CDEEC006B6940 /* IRExplorerTest.m in Sources */,
 				0E4C0F1C1A1C9D8F006B6940 /* IRExplorerListEntryTest.m in Sources */,
 				0E5D1A411A1A029000715AC5 /* HomeViewController.m in Sources */,

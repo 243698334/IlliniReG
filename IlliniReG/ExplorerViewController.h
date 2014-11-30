@@ -1,5 +1,5 @@
 //
-//  ExplorerViewController.h
+//  ExplorerTableViewController.h
 //  IlliniReG
 //
 //  Created by Kevin Yufei Chen on 11/17/14.
@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
+#import "IRExplorer.h"
 
-@interface ExplorerViewController : UIViewController
+@interface ExplorerViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, UIAlertViewDelegate, UINavigationBarDelegate>
+
+- (instancetype)init;
+- (instancetype)initWithYear:(NSString *)year semester:(NSString *)semester subject:(NSString *)subject course:(NSString *)course;
+
+@property (nonatomic, strong) NSString *currentYear;
+@property (nonatomic, strong) NSString *currentSemester;
+@property (nonatomic, strong) NSString *currentSubject;
+@property (nonatomic, strong) NSString *currentCourse;
+@property (nonatomic, strong) NSString *currentSection;
+@property (nonatomic, strong) NSString *currentTableCellID;
+@property (nonatomic, strong) NSURL *currentExplorerURL;
 
 @end

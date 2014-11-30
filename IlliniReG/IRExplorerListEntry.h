@@ -33,7 +33,10 @@ typedef enum {
 @property (nonatomic) IRExplorerListEntryType type;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *subtitle;
-@property (nonatomic, copy) NSURL *nextLayerURL;
+@property (nonatomic, copy) NSURL *subLayerURL;
+
+@property (nonatomic, copy) NSString *xmlID;
+@property (nonatomic, copy) NSString *xmlText;
 
 + (NSString *)typeToXMLTag:(IRExplorerListEntryType)type plural:(BOOL)isPlural;
 + (IRExplorerListEntryType)xmlTagToType:(NSString *)xmlTag;

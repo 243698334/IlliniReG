@@ -9,7 +9,7 @@
 #import "SideMenuViewController.h"
 #import "UIViewController+RESideMenu.h"
 #import "MonitorTableViewController.h"
-#import "ExplorerTableViewController.h"
+#import "ExplorerViewController.h"
 
 @interface SideMenuViewController ()
 
@@ -48,6 +48,7 @@
         case 0:
             [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"profile"]]                                                         animated:YES];
             [self.sideMenuViewController hideMenuViewController];
+            break;
         case 1:
             [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"home"]]                                                         animated:YES];
             [self.sideMenuViewController hideMenuViewController];
@@ -58,6 +59,8 @@
             break;
         case 3:
             [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"explorer"]]animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+            break;
         default:
             break;
     }

@@ -7,22 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <RaptureXML/RXMLElement.h>
 #import "IRExplorerListEntry.h"
 #import "IRExplorerSectionItem.h"
 
-@interface IRExplorer : NSObject <NSXMLParserDelegate> {
-    NSArray *retrievedList;
-    NSArray *lastRetrievedList;
-}
+@interface IRExplorer : NSObject
 
-extern NSString * const CISAPPAPIURL;
+extern NSString * const CISAppAPIBaseURL;
 
-- (NSArray *)retrieveLastList;
-- (NSArray *)retrieveList;
-- (NSArray *)retrieveListWithYear:(NSString *)year;
-- (NSArray *)retrieveListWithYear:(NSString *)year semester:(NSString *)semester;
-- (NSArray *)retrieveListWithYear:(NSString *)year semester:(NSString *)semester subject:(NSString *)subject;
-- (NSArray *)retrieveListWithYear:(NSString *)year semester:(NSString *)semester subject:(NSString *)subject course:(NSString *)course;
-- (NSArray *)retrieveItemWithYear:(NSString *)year semester:(NSString *)semester subject:(NSString *)subject course:(NSString *)course section:(NSString *)section;
-
++ (NSURL *)constructURLWithWithYear:(NSString *)year semester:(NSString *)semester subject:(NSString *)subject course:(NSString *)course section:(NSString *)section;
 @end

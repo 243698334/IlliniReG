@@ -1,10 +1,13 @@
 PODS:
+  - RaptureXML (1.0.1)
   - RESideMenu (4.0.7)
 
 DEPENDENCIES:
+  - RaptureXML
   - RESideMenu (~> 4.0.7)
 
 SPEC CHECKSUMS:
+  RaptureXML: b9b0aca9c68c684c189af73dd5e8f8fdeec74600
   RESideMenu: a9c1cd2e64e60e1d3166ddac01a83e215a0e4d30
 
 COCOAPODS: 0.34.4

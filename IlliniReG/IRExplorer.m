@@ -8,38 +8,12 @@
 
 #import "IRExplorer.h"
 
-NSString * const CISAPPAPIURL = @"http://courses.illinois.edu/cisapp/explorer/schedule.xml";
-
 @implementation IRExplorer
 
-- (NSArray *)retrieveLastList {
-    return lastRetrievedList;
-}
+NSString * const CISAppAPIBaseURL = @"http://courses.illinois.edu/cisapp/explorer/schedule.xml";
 
-- (NSArray *)retrieveList {
-    return [self retrieveListWithYear:nil semester:nil subject:nil course:nil];
-}
-
-- (NSArray *)retrieveListWithYear:(NSString *)year {
-    return [self retrieveListWithYear:year semester:nil subject:nil course:nil];
-}
-- (NSArray *)retrieveListWithYear:(NSString *)year semester:(NSString *)semester {
-    return [self retrieveListWithYear:year semester:semester subject:nil course:nil];
-}
-- (NSArray *)retrieveListWithYear:(NSString *)year semester:(NSString *)semester subject:(NSString *)subject {
-    return [self retrieveListWithYear:year semester:semester subject:subject course:nil];
-}
-
-- (NSArray *)retrieveListWithYear:(NSString *)year semester:(NSString *)semester subject:(NSString *)subject course:(NSString *)course {
-    return nil;
-}
-
-- (IRExplorerSectionItem *)retrieveItemWithYear:(NSString *)year semester:(NSString *)semester subject:(NSString *)subject course:(NSString *)course section:(NSString *)section {
-    return nil;
-}
-
-- (NSURL *)constructURLWithWithYear:(NSString *)year semester:(NSString *)semester subject:(NSString *)subject course:(NSString *)course section:(NSString *)section {
-    NSMutableString *requestedURL = [[NSMutableString alloc] initWithString:CISAPPAPIURL];
++ (NSURL *)constructURLWithWithYear:(NSString *)year semester:(NSString *)semester subject:(NSString *)subject course:(NSString *)course section:(NSString *)section {
+    NSMutableString *requestedURL = [[NSMutableString alloc] initWithString:CISAppAPIBaseURL];
     if (year != nil) {
         [requestedURL insertString:[@"/" stringByAppendingString:year] atIndex:[requestedURL rangeOfString:@".xml"].location];
     }
@@ -55,9 +29,8 @@ NSString * const CISAPPAPIURL = @"http://courses.illinois.edu/cisapp/explorer/sc
     if (section != nil) {
         [requestedURL insertString:[@"/" stringByAppendingString:section] atIndex:[requestedURL rangeOfString:@".xml"].location];
     }
+    NSLog(@"Constructed URL: %@", requestedURL);
     return [[NSURL alloc] initWithString:requestedURL];
 }
-
-
 
 @end

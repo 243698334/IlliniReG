@@ -41,7 +41,7 @@
 }
 
 - (void)testNextLayerURL {
-    XCTAssertEqual(@"http://courses.illinois.edu/cisapp/explorer/schedule/2015/spring/CS/125.xml", [[entry nextLayerURL] absoluteString]);
+    XCTAssertEqual(@"http://courses.illinois.edu/cisapp/explorer/schedule/2015/spring/CS/125.xml", [[entry subLayerURL] absoluteString]);
 }
 
 @end
