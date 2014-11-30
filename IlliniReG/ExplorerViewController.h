@@ -7,20 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <DejalActivityView/DejalActivityView.h>
+#import <AFNetworking/AFNetworking.h>
 #import "AppDelegate.h"
 #import "IRExplorer.h"
 
-@interface ExplorerViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, UIAlertViewDelegate, UINavigationBarDelegate>
+@interface ExplorerViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, UISearchResultsUpdating, UIAlertViewDelegate, UINavigationBarDelegate>
 
-- (instancetype)init;
-- (instancetype)initWithYear:(NSString *)year semester:(NSString *)semester subject:(NSString *)subject course:(NSString *)course;
-
-@property (nonatomic, strong) NSString *currentYear;
-@property (nonatomic, strong) NSString *currentSemester;
-@property (nonatomic, strong) NSString *currentSubject;
-@property (nonatomic, strong) NSString *currentCourse;
-@property (nonatomic, strong) NSString *currentSection;
-@property (nonatomic, strong) NSString *currentTableCellID;
-@property (nonatomic, strong) NSURL *currentExplorerURL;
+@property (nonatomic) IRExplorerEntryType explorerEntryType;
+@property (nonatomic, strong) NSURL *explorerURL;
+@property (nonatomic, strong) ExplorerViewController *subLayerExplorerViewController;
 
 @end

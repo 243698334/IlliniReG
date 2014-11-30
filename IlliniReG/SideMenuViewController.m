@@ -8,7 +8,7 @@
 
 #import "SideMenuViewController.h"
 #import "UIViewController+RESideMenu.h"
-#import "MonitorTableViewController.h"
+#import "MonitorViewController.h"
 #import "ExplorerViewController.h"
 
 @interface SideMenuViewController ()

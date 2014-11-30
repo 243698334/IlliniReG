@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MonitorTableViewController : UITableViewController
+@interface MonitorViewController : UITableViewController
 
 @end

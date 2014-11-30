@@ -14,10 +14,11 @@ typedef enum {
     SEMESTER = 2,
     SUBJECT = 3,
     COURSE = 4,
-    SECTION = 5
-} IRExplorerListEntryType;
+    SECTION = 5,
+    DETAIL = 6
+} IRExplorerEntryType;
 
-@interface IRExplorerListEntry : NSObject
+@interface IRExplorerEntry : NSObject
 
 // title and subTitle can represent different information under different entry type.
 //
@@ -30,7 +31,7 @@ typedef enum {
 //  section  |   section    | CRN, instructor
 //
 
-@property (nonatomic) IRExplorerListEntryType type;
+@property (nonatomic) IRExplorerEntryType type;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic, copy) NSURL *subLayerURL;
@@ -38,8 +39,8 @@ typedef enum {
 @property (nonatomic, copy) NSString *xmlID;
 @property (nonatomic, copy) NSString *xmlText;
 
-+ (NSString *)typeToXMLTag:(IRExplorerListEntryType)type plural:(BOOL)isPlural;
-+ (IRExplorerListEntryType)xmlTagToType:(NSString *)xmlTag;
++ (NSString *)typeToXMLTag:(IRExplorerEntryType)type plural:(BOOL)isPlural;
++ (IRExplorerEntryType)xmlTagToType:(NSString *)xmlTag;
 
 - (instancetype)initWithXMLID:(NSString *)xmlID text:(NSString *)text href:(NSString *)href type:(NSString *)type;
 

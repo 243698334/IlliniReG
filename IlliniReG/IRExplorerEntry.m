@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Kevin Yufei Chen. All rights reserved.
 //
 
-#import "IRExplorerListEntry.h"
+#import "IRExplorerEntry.h"
 
-@implementation IRExplorerListEntry
+@implementation IRExplorerEntry
 
-+ (NSString *)typeToXMLTag:(IRExplorerListEntryType)type plural:(BOOL)isPlural {
++ (NSString *)typeToXMLTag:(IRExplorerEntryType)type plural:(BOOL)isPlural {
     switch (type) {
         case YEAR:
             return isPlural ? @"calendarYears" : @"calendarYear";
@@ -27,27 +27,26 @@
     }
 }
 
-+ (IRExplorerListEntryType)xmlTagToType:(NSString *)xmlTag {
-    IRExplorerListEntryType type;
++ (IRExplorerEntryType)xmlTagToType:(NSString *)xmlTag {
     if ([xmlTag hasPrefix:@"schedule"]) {
-        type = SCHEDULE;
+        return SCHEDULE;
     } else if ([xmlTag hasPrefix:@"calendarYear"]) {
-        type = YEAR;
+        return YEAR;
     } else if ([xmlTag hasPrefix:@"term"]) {
-        type = SEMESTER;
+        return SEMESTER;
     } else if ([xmlTag hasPrefix:@"subject"]) {
-        type = SUBJECT;
+        return SUBJECT;
     } else if ([xmlTag hasPrefix:@"course"]) {
-        type = COURSE;
+        return COURSE;
     } else if ([xmlTag hasPrefix:@"section"]) {
-        type = SECTION;
+        return SECTION;
     }
-    return type;
+    return -1;
 }
 
 - (instancetype)initWithXMLID:(NSString *)xmlID text:(NSString *)text href:(NSString *)href type:(NSString *)type {
     if (self = [self init]) {
-        IRExplorerListEntryType currentType = [IRExplorerListEntry xmlTagToType:type];
+        IRExplorerEntryType currentType = [IRExplorerEntry xmlTagToType:type];
         self.xmlID = xmlID;
         self.xmlText = text;
         switch (currentType) {
@@ -73,7 +72,7 @@
     return self;
 }
 
-- (void)setType:(IRExplorerListEntryType)type title:(NSString *)title subtitle:(NSString *)subtitle subLayerURL:(NSURL *)subLayerURL {
+- (void)setType:(IRExplorerEntryType)type title:(NSString *)title subtitle:(NSString *)subtitle subLayerURL:(NSURL *)subLayerURL {
     self.type = type;
     self.title = title;
     self.subtitle = subtitle;

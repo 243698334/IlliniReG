@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Kevin Yufei Chen. All rights reserved.
 //
 
-#import "MonitorTableViewController.h"
+#import "MonitorViewController.h"
 
-@interface MonitorTableViewController ()
+@interface MonitorViewController ()
 
 @end
 
-@implementation MonitorTableViewController
+@implementation MonitorViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

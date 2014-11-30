@@ -40,10 +40,10 @@
             </objects>
             <point key="canvasLocation" x="673.125" y="1151.4084507042253"/>
         </scene>
-        <!--Monitor Table View Controller-->
+        <!--Monitor View Controller-->
         <scene sceneID="gOj-Tq-sQO">
             <objects>
-                <viewController storyboardIdentifier="monitor" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fle-Nm-esl" customClass="MonitorTableViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="monitor" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fle-Nm-esl" customClass="MonitorViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gYZ-dz-QHm"/>
                         <viewControllerLayoutGuide type="bottom" id="9lh-cA-Fys"/>
