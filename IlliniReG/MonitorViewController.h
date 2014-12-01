@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MonitorSettingsViewController.h"
 
-@interface MonitorViewController : UITableViewController
+@interface MonitorViewController : UIViewController
 
 @end

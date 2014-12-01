@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0E0DD0991A2C47470029D005 /* MonitorSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0E0DD0981A2C47470029D005 /* MonitorSettings.bundle */; };
+		0E0DD09C1A2C67000029D005 /* MonitorSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0DD09B1A2C67000029D005 /* MonitorSettingsViewController.m */; };
+		0E0DD09F1A2C681E0029D005 /* IRMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0DD09E1A2C681E0029D005 /* IRMonitor.m */; };
+		0E0DD0A21A2C69A50029D005 /* IRMonitorEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0DD0A11A2C69A50029D005 /* IRMonitorEntry.m */; };
 		0E2494E31A27017A00F0905B /* IRExplorer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2494E21A27017A00F0905B /* IRExplorer.m */; };
 		0E25E7C31A29A2D200AA9D77 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E25E7C21A29A2D200AA9D77 /* ProfileViewController.m */; };
 		0E33B6421A19DB230036F636 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E33B6411A19DB230036F636 /* main.m */; };
@@ -43,6 +46,12 @@
 
 /* Begin PBXFileReference section */
 		0E0DD0981A2C47470029D005 /* MonitorSettings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MonitorSettings.bundle; sourceTree = "<group>"; };
+		0E0DD09A1A2C67000029D005 /* MonitorSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonitorSettingsViewController.h; sourceTree = "<group>"; };
+		0E0DD09B1A2C67000029D005 /* MonitorSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonitorSettingsViewController.m; sourceTree = "<group>"; };
+		0E0DD09D1A2C681E0029D005 /* IRMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRMonitor.h; sourceTree = "<group>"; };
+		0E0DD09E1A2C681E0029D005 /* IRMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRMonitor.m; sourceTree = "<group>"; };
+		0E0DD0A01A2C69A50029D005 /* IRMonitorEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRMonitorEntry.h; sourceTree = "<group>"; };
+		0E0DD0A11A2C69A50029D005 /* IRMonitorEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRMonitorEntry.m; sourceTree = "<group>"; };
 		0E2494E11A27017A00F0905B /* IRExplorer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRExplorer.h; sourceTree = "<group>"; };
 		0E2494E21A27017A00F0905B /* IRExplorer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRExplorer.m; sourceTree = "<group>"; };
 		0E25E7C11A29A2D200AA9D77 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -125,16 +134,20 @@
 				0E33B6431A19DB230036F636 /* AppDelegate.h */,
 				0E33B6441A19DB230036F636 /* AppDelegate.m */,
 				0E5D1ABE1A1ABFAA00715AC5 /* Controllers */,
-				0E33B64E1A19DB230036F636 /* LaunchScreen.xib */,
-				0E33B6491A19DB230036F636 /* Main.storyboard */,
-				0E33B63F1A19DB230036F636 /* Supporting Files */,
+				0E2494E11A27017A00F0905B /* IRExplorer.h */,
+				0E2494E21A27017A00F0905B /* IRExplorer.m */,
 				0E4C0F181A1C0ACA006B6940 /* IRExplorerEntry.h */,
 				0E4C0F191A1C0ACA006B6940 /* IRExplorerEntry.m */,
 				0E4C0F1D1A1CBFF8006B6940 /* IRExplorerSectionEntry.h */,
 				0E4C0F1E1A1CBFF8006B6940 /* IRExplorerSectionEntry.m */,
-				0E2494E11A27017A00F0905B /* IRExplorer.h */,
-				0E2494E21A27017A00F0905B /* IRExplorer.m */,
+				0E0DD09D1A2C681E0029D005 /* IRMonitor.h */,
+				0E0DD09E1A2C681E0029D005 /* IRMonitor.m */,
+				0E0DD0A01A2C69A50029D005 /* IRMonitorEntry.h */,
+				0E0DD0A11A2C69A50029D005 /* IRMonitorEntry.m */,
+				0E33B64E1A19DB230036F636 /* LaunchScreen.xib */,
+				0E33B6491A19DB230036F636 /* Main.storyboard */,
 				0E0DD0981A2C47470029D005 /* MonitorSettings.bundle */,
+				0E33B63F1A19DB230036F636 /* Supporting Files */,
 			);
 			path = IlliniReG;
 			sourceTree = "<group>";
@@ -170,14 +183,16 @@
 		0E5D1ABE1A1ABFAA00715AC5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0E25E7C11A29A2D200AA9D77 /* ProfileViewController.h */,
-				0E25E7C21A29A2D200AA9D77 /* ProfileViewController.m */,
 				0E5D1A3A1A1A014300715AC5 /* ExplorerViewController.h */,
 				0E5D1A3B1A1A014300715AC5 /* ExplorerViewController.m */,
 				0E5D1A3E1A1A029000715AC5 /* HomeViewController.h */,
 				0E5D1A3F1A1A029000715AC5 /* HomeViewController.m */,
+				0E0DD09A1A2C67000029D005 /* MonitorSettingsViewController.h */,
+				0E0DD09B1A2C67000029D005 /* MonitorSettingsViewController.m */,
 				0E5D1A361A1A012600715AC5 /* MonitorViewController.h */,
 				0E5D1A371A1A012600715AC5 /* MonitorViewController.m */,
+				0E25E7C11A29A2D200AA9D77 /* ProfileViewController.h */,
+				0E25E7C21A29A2D200AA9D77 /* ProfileViewController.m */,
 				0E5D1A7E1A1A18A700715AC5 /* RootViewController.h */,
 				0E5D1A7F1A1A18A700715AC5 /* RootViewController.m */,
 				0E5D1A811A1A192D00715AC5 /* SideMenuViewController.h */,
@@ -350,8 +365,11 @@
 				0E2494E31A27017A00F0905B /* IRExplorer.m in Sources */,
 				0E4C0F1A1A1C0ACA006B6940 /* IRExplorerEntry.m in Sources */,
 				0E5D1A831A1A192D00715AC5 /* SideMenuViewController.m in Sources */,
+				0E0DD09F1A2C681E0029D005 /* IRMonitor.m in Sources */,
+				0E0DD0A21A2C69A50029D005 /* IRMonitorEntry.m in Sources */,
 				0E5D1A381A1A012600715AC5 /* MonitorViewController.m in Sources */,
 				0E5D1A401A1A029000715AC5 /* HomeViewController.m in Sources */,
+				0E0DD09C1A2C67000029D005 /* MonitorSettingsViewController.m in Sources */,
 				0E25E7C31A29A2D200AA9D77 /* ProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
