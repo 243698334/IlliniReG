@@ -11,7 +11,10 @@
 #import "MonitorViewController.h"
 #import "ExplorerViewController.h"
 
-@interface SideMenuViewController ()
+@interface SideMenuViewController () {
+    NSArray *titles;
+    NSArray *icons;
+}
 
 @property (strong, readwrite, nonatomic) UITableView *tableView;
 
@@ -22,6 +25,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    titles = @[@"Profile", @"Home", @"Monitor", @"Explorer", @"Settings", @"Log Out", @"Test"];
+    icons = @[@"IconProfile", @"IconHome", @"IconProfile", @"IconCalendar", @"IconSettings", @"IconEmpty", @"IconEmpty"];
     
     self.tableView = ({
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, (self.view.frame.size.height - 54 * 5) / 2.0f, self.view.frame.size.width, 54 * 5) style:UITableViewStylePlain];
@@ -61,6 +67,10 @@
             [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"explorer"]]animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             break;
+        case 4:
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"wishList"]]animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+            break;
         default:
             break;
     }
@@ -78,7 +88,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex {
-    return 6;
+    return [titles count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -95,10 +105,11 @@
         cell.selectedBackgroundView = [[UIView alloc] init];
     }
     
-    NSArray *titles = @[@"Profile", @"Home", @"Monitor", @"Explorer", @"Settings", @"Log Out"];
-    NSArray *images = @[@"IconProfile", @"IconHome", @"IconProfile", @"IconCalendar", @"IconSettings", @"IconEmpty"];
+//    NSArray *titles = @[@"Profile", @"Home", @"Monitor", @"Explorer", @"Settings", @"Log Out"];
+//    NSArray *images = @[@"IconProfile", @"IconHome", @"IconProfile", @"IconCalendar", @"IconSettings", @"IconEmpty"];
+    
     cell.textLabel.text = titles[indexPath.row];
-    cell.imageView.image = [UIImage imageNamed:images[indexPath.row]];
+    cell.imageView.image = [UIImage imageNamed:icons[indexPath.row]];
     
     return cell;
 }

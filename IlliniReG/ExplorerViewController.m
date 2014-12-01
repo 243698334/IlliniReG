@@ -49,7 +49,7 @@
     
     // Navigation Bar
     if (_explorerEntryType == SECTION) {
-        addToWishListButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Add to Wishlist" style:UIBarButtonItemStyleDone target:self action:@selector(addSectionsToWishList)];
+        addToWishListButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Add to Wish List" style:UIBarButtonItemStyleDone target:self action:@selector(addSectionsToWishList)];
         self.navigationItem.rightBarButtonItem = addToWishListButtonItem;
     }
     
@@ -155,7 +155,9 @@
                 [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
             }
         } else {
-            _subLayerExplorerViewController = [[ExplorerViewController alloc] initWithExplorerEntryType:[currentSelectedEntry type] + 1];
+            //_subLayerExplorerViewController = [[ExplorerViewController alloc] initWithExplorerEntryType:[currentSelectedEntry type] + 1];
+            _subLayerExplorerViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"explorer"];
+            _subLayerExplorerViewController.explorerEntryType = [currentSelectedEntry type] + 1;
             _subLayerExplorerViewController.title = currentSelectedEntry.title;
             _subLayerExplorerViewController.explorerURL = currentSelectedEntry.subLayerURL;
             [_subLayerExplorerViewController loadDataToTableView];
@@ -342,16 +344,20 @@
     for (IRExplorerEntry *currentSelectedEntry in selectedEntries) {
         NSLog(@"Selected: %@", [currentSelectedEntry title]);
     }
-    [self displayActivityView];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *parameters = @{@"foo": @"bar"};
-    [manager POST:@"http://example.com/resources.json" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        [self removeActivityView];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        [self removeActivityView];
-    }];
+    WishListViewController *wishListViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"wishList"];
+    [self.navigationController pushViewController:wishListViewController animated:YES];
+    //[self.navigationController presentViewController:wishListViewController animated:YES completion:nil];
+    
+//    [self displayActivityView];
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    NSDictionary *parameters = @{@"foo": @"bar"};
+//    [manager POST:@"http://example.com/resources.json" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"JSON: %@", responseObject);
+//        [self removeActivityView];
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"Error: %@", error);
+//        [self removeActivityView];
+//    }];
 }
 
 /*

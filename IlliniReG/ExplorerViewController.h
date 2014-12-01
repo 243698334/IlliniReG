@@ -11,6 +11,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import "AppDelegate.h"
 #import "IRExplorer.h"
+#import "WishListViewController.h"
 
 @interface ExplorerViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, UISearchResultsUpdating, UIAlertViewDelegate, UINavigationBarDelegate>
 

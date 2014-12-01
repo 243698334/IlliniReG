@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E0DD0991A2C47470029D005 /* MonitorSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0E0DD0981A2C47470029D005 /* MonitorSettings.bundle */; };
 		0E2494E31A27017A00F0905B /* IRExplorer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2494E21A27017A00F0905B /* IRExplorer.m */; };
 		0E25E7C31A29A2D200AA9D77 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E25E7C21A29A2D200AA9D77 /* ProfileViewController.m */; };
 		0E33B6421A19DB230036F636 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E33B6411A19DB230036F636 /* main.m */; };
 		0E33B6451A19DB230036F636 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E33B6441A19DB230036F636 /* AppDelegate.m */; };
 		0E33B64B1A19DB230036F636 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E33B6491A19DB230036F636 /* Main.storyboard */; };
 		0E33B6501A19DB230036F636 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E33B64E1A19DB230036F636 /* LaunchScreen.xib */; };
+		0E3946051A2BE99700E39228 /* WishListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E3946041A2BE99700E39228 /* WishListViewController.m */; };
 		0E4C0F1A1A1C0ACA006B6940 /* IRExplorerEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C0F191A1C0ACA006B6940 /* IRExplorerEntry.m */; };
 		0E4C0F1C1A1C9D8F006B6940 /* IRExplorerListEntryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C0F1B1A1C9D8F006B6940 /* IRExplorerListEntryTest.m */; };
 		0E4C0F1F1A1CBFF8006B6940 /* IRExplorerSectionEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C0F1E1A1CBFF8006B6940 /* IRExplorerSectionEntry.m */; };
@@ -40,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E0DD0981A2C47470029D005 /* MonitorSettings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MonitorSettings.bundle; sourceTree = "<group>"; };
 		0E2494E11A27017A00F0905B /* IRExplorer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRExplorer.h; sourceTree = "<group>"; };
 		0E2494E21A27017A00F0905B /* IRExplorer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRExplorer.m; sourceTree = "<group>"; };
 		0E25E7C11A29A2D200AA9D77 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -53,6 +56,8 @@
 		0E33B64F1A19DB230036F636 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		0E33B6551A19DB230036F636 /* IlliniReGTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IlliniReGTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E33B65A1A19DB230036F636 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0E3946031A2BE99700E39228 /* WishListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WishListViewController.h; sourceTree = "<group>"; };
+		0E3946041A2BE99700E39228 /* WishListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WishListViewController.m; sourceTree = "<group>"; };
 		0E4C0F181A1C0ACA006B6940 /* IRExplorerEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRExplorerEntry.h; sourceTree = "<group>"; };
 		0E4C0F191A1C0ACA006B6940 /* IRExplorerEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRExplorerEntry.m; sourceTree = "<group>"; };
 		0E4C0F1B1A1C9D8F006B6940 /* IRExplorerListEntryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRExplorerListEntryTest.m; sourceTree = "<group>"; };
@@ -129,6 +134,7 @@
 				0E4C0F1E1A1CBFF8006B6940 /* IRExplorerSectionEntry.m */,
 				0E2494E11A27017A00F0905B /* IRExplorer.h */,
 				0E2494E21A27017A00F0905B /* IRExplorer.m */,
+				0E0DD0981A2C47470029D005 /* MonitorSettings.bundle */,
 			);
 			path = IlliniReG;
 			sourceTree = "<group>";
@@ -176,6 +182,8 @@
 				0E5D1A7F1A1A18A700715AC5 /* RootViewController.m */,
 				0E5D1A811A1A192D00715AC5 /* SideMenuViewController.h */,
 				0E5D1A821A1A192D00715AC5 /* SideMenuViewController.m */,
+				0E3946031A2BE99700E39228 /* WishListViewController.h */,
+				0E3946041A2BE99700E39228 /* WishListViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -282,6 +290,7 @@
 				0E33B64B1A19DB230036F636 /* Main.storyboard in Resources */,
 				0E5D1ABD1A1A1DE100715AC5 /* Images.xcassets in Resources */,
 				0E33B6501A19DB230036F636 /* LaunchScreen.xib in Resources */,
+				0E0DD0991A2C47470029D005 /* MonitorSettings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E4C0F1F1A1CBFF8006B6940 /* IRExplorerSectionEntry.m in Sources */,
+				0E3946051A2BE99700E39228 /* WishListViewController.m in Sources */,
 				0E33B6451A19DB230036F636 /* AppDelegate.m in Sources */,
 				0E5D1A801A1A18A700715AC5 /* RootViewController.m in Sources */,
 				0E33B6421A19DB230036F636 /* main.m in Sources */,
