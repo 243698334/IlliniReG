@@ -17,7 +17,14 @@ typedef enum {
 @interface IRMonitor : NSObject
 
 @property (nonatomic) IRMonitorStatus status;
+@property (nonatomic) BOOL autoRegister;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSMutableArray *entries;
+@property (nonatomic) NSInteger refreshFrequency;
+@property (nonatomic, copy) NSString *userAgentContent;
+@property (nonatomic, copy) NSString *userAgentType;
+@property (nonatomic) BOOL pushNotification;
+@property (nonatomic, copy) NSString *smsNumber;
+@property (nonatomic, copy) NSString *email;
 
 @end

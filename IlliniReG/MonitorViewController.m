@@ -45,7 +45,7 @@
 }
 
 - (void)jumpToSettingsView {
-    MonitorSettingsViewController *monitorSettingsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"monitorSettings"];
+    MonitorSettingsViewController *monitorSettingsViewController = [[MonitorSettingsViewController alloc] init];
     [self.navigationController pushViewController:monitorSettingsViewController animated:YES];
 }
 
