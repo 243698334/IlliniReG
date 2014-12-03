@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) IRMonitor *monitor;
 
+- (id)initWithMonitor:(IRMonitor *)monitor;
+
 @end

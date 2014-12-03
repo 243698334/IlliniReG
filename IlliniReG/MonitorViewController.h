@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <AFNetworking/AFNetworking.h>
 #import <DejalActivityView/DejalActivityView.h>
+#import <JMStaticContentTableViewController/JMStaticContentTableViewController.h>
 #import "MonitorSettingsViewController.h"
 #import "IRMonitor.h"
 
-@interface MonitorViewController : UITableViewController
+@interface MonitorViewController : JMStaticContentTableViewController
 
 @end

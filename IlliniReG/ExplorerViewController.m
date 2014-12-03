@@ -101,7 +101,7 @@
             if (searchingInProgress) {
                 cell.textLabel.text = @"No Search Results";
             } else {
-                cell.textLabel.text = @"Network Error";
+                cell.textLabel.text = @"Please wait...";
             }
             cell.textLabel.textAlignment = NSTextAlignmentCenter;
             cell.textLabel.textColor = [UIColor darkGrayColor];
@@ -271,7 +271,7 @@
 - (void)loadDataToTableView:(UIRefreshControl *)refreshControl {
     NSLog(@"Loading data from URL: %@", _explorerURL);
     if (refreshControl == nil) {
-        [self displayActivityView];
+        [self performSelector:@selector(displayActivityView) withObject:nil afterDelay:0.2];
     }
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

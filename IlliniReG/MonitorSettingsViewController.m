@@ -10,6 +10,7 @@
 
 @interface MonitorSettingsViewController ()
 
+@property (nonatomic, strong) UIBarButtonItem *doneButtonItem;
 @property (nonatomic, strong) UISwitch *monitorSwitch;
 @property (nonatomic, strong) UISwitch *autoRegisterSwitch;
 @property (nonatomic, strong) UISwitch *pushNotificationSwitch;
@@ -23,12 +24,25 @@
     return self;
 }
 
+- (id)initWithMonitor:(IRMonitor *)monitor {
+    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+        _monitor = monitor;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     // Prevent retain cycle
     __unsafe_unretained __block MonitorSettingsViewController *safeSelf = self;
+    
+    // Done button (only for new monitors)
+    if (_monitor == nil) {
+        _doneButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(addNewMonitor)];
+        self.navigationItem.rightBarButtonItem = _doneButtonItem;
+    }
     
     // Load settings
     [self retrieveMonitorSettings];
@@ -148,15 +162,6 @@
     if (_monitor == nil) {
         _monitor = [[IRMonitor alloc] init];
     }
-    _monitor.status = ON;
-    _monitor.name = @"Test Monitor";
-    _monitor.autoRegister = NO;
-    _monitor.refreshFrequency = 30;
-    _monitor.userAgentType = @"Chrome";
-    _monitor.pushNotification = YES;
-    _monitor.smsNumber = @"(217) 419-5313";
-    _monitor.email = nil;
-    
 }
 
 - (void)monitorSwitchChangeState:(UISwitch *)sender {
@@ -169,6 +174,10 @@
 
 - (void)pushNotificationSwitchChangeState:(UISwitch *)sender {
     _monitor.pushNotification = sender.on;
+}
+
+- (void)addNewMonitor {
+    
 }
 
 

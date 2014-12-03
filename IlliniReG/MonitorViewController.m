@@ -10,16 +10,62 @@
 
 @interface MonitorViewController () 
 
+@property (nonatomic, strong) NSMutableArray *monitors;
+
 @end
 
-@implementation MonitorViewController {
-    NSMutableArray *monitors;
+@implementation MonitorViewController
+
+- (id)init {
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"Monitor Panel";
+    
     [self retrieveMonitorList];
+
+    // Prevent retain cycle
+    __unsafe_unretained __block MonitorViewController *safeSelf = self;
+    
+    // Add New
+    [self addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
+        [section addCell:^(JMStaticContentTableViewCell *staticContentCell, UITableViewCell *cell, NSIndexPath *indexPath) {
+            staticContentCell.reuseIdentifier = @"AddNewMonitorCell";
+            cell.textLabel.text = @"Add New...";
+        } whenSelected:^(NSIndexPath *indexPath) {
+            MonitorSettingsViewController *monitorSettingsViewController = [[MonitorSettingsViewController alloc] initWithMonitor:nil];
+            [safeSelf.navigationController pushViewController:monitorSettingsViewController animated:YES];
+        }];
+    }];
+    
+    // Active Monitors
+    [self addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
+        section.headerTitle = @"Active Monitors";
+        NSString *numberOfMonitors = [safeSelf.monitors count] == 0 ? @"no" : [NSString stringWithFormat:@"%zd", [safeSelf.monitors count]];
+        NSString *monitorPlural = [safeSelf.monitors count] == 1 ? @"" : @"s";
+        section.footerTitle = [NSString stringWithFormat:@"Currently you have %@ running monitor%@.", numberOfMonitors, monitorPlural];
+    }];
+    
+    // Inactive Monitors
+    [self addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
+        section.headerTitle = @"Inactive Monitors";
+        NSString *numberOfMonitors = [safeSelf.monitors count] == 0 ? @"no" : [NSString stringWithFormat:@"%zd", [safeSelf.monitors count]];
+        NSString *monitorPlural = [safeSelf.monitors count] == 1 ? @"" : @"s";
+        section.footerTitle = [NSString stringWithFormat:@"Currently you have %@ idle monitor%@.", numberOfMonitors, monitorPlural];
+    }];
+    
+    // Succeeded Monitors
+    [self addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
+        section.headerTitle = @"Succeeded Monitors";
+        NSString *monitorPlural = [safeSelf.monitors count] == 1 ? @"" : @"s";
+        NSString *failedFooterTitle = @"None of your monitors has successfully registered the selected sections yet.";
+        NSString *succeededFooterTitle = [NSString stringWithFormat:@"Yay! You have %zd monitor%@ completed the registration for your courses!", [safeSelf.monitors count], monitorPlural];
+        section.footerTitle = [safeSelf.monitors count] == 0 ? failedFooterTitle : succeededFooterTitle;
+    }];
     
     UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStyleDone target:self action:@selector(jumpToSettingsView)];
     self.navigationItem.rightBarButtonItem = settingsButton;
@@ -32,27 +78,10 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return 0;
-}
-
 - (void)retrieveMonitorList {
     [self displayActivityView];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *parameters = @{@"foo": @"bar"};
-    [manager POST:@"http://example.com/resources.json" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        [self removeActivityView];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        [self removeActivityView];
-    }];
+    
+    [self removeActivityView];
 }
 
 - (void)jumpToSettingsView {

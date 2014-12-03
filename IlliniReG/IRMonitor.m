@@ -1,5 +1,5 @@
 //
-//  IRMonitor.m
+//  IRm
 //  IlliniReG
 //
 //  Created by Kevin Yufei Chen on 12/1/14.
@@ -9,5 +9,18 @@
 #import "IRMonitor.h"
 
 @implementation IRMonitor
+
+- (id)init {
+    if (self = [super init]) {
+        _name = @"New Monitor";
+        _autoRegister = NO;
+        _refreshFrequency = 30;
+        _userAgentType = @"Chrome";
+        _pushNotification = YES;
+        _smsNumber = @"(217) 419-5313";
+        _email = nil;
+    }
+    return self;
+}
 
 @end
