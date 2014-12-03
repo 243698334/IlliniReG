@@ -160,15 +160,15 @@
 }
 
 - (void)monitorSwitchChangeState:(UISwitch *)sender {
-    
+    _monitor.status = sender.on ? ON : OFF;
 }
 
 - (void)autoRegisterSwitchChangeState:(UISwitch *)sender {
-    
+    _monitor.autoRegister = sender.on;
 }
 
 - (void)pushNotificationSwitchChangeState:(UISwitch *)sender {
-    
+    _monitor.pushNotification = sender.on;
 }
 
 

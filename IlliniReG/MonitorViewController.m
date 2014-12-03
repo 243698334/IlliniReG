@@ -12,16 +12,14 @@
 
 @end
 
-@implementation MonitorViewController
+@implementation MonitorViewController {
+    NSMutableArray *monitors;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self retrieveMonitorList];
     
     UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStyleDone target:self action:@selector(jumpToSettingsView)];
     self.navigationItem.rightBarButtonItem = settingsButton;
@@ -44,9 +42,35 @@
     return 0;
 }
 
+- (void)retrieveMonitorList {
+    [self displayActivityView];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *parameters = @{@"foo": @"bar"};
+    [manager POST:@"http://example.com/resources.json" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        [self removeActivityView];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        [self removeActivityView];
+    }];
+}
+
 - (void)jumpToSettingsView {
     MonitorSettingsViewController *monitorSettingsViewController = [[MonitorSettingsViewController alloc] init];
     [self.navigationController pushViewController:monitorSettingsViewController animated:YES];
+}
+
+
+#pragma mark - Dejal Activity View
+
+- (IBAction)displayActivityView {
+    UIView *viewToUse = self.navigationController.navigationBar.superview;
+    [DejalBezelActivityView activityViewForView:viewToUse];
+}
+
+- (void)removeActivityView {
+    [DejalBezelActivityView removeViewAnimated:YES];
+    [[self class] cancelPreviousPerformRequestsWithTarget:self];
 }
 
 /*

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IRMonitorEntry.h"
 
 typedef enum {
     ON = 0,

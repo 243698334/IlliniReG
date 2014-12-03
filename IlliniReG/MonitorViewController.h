@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AFNetworking/AFNetworking.h>
+#import <DejalActivityView/DejalActivityView.h>
 #import "MonitorSettingsViewController.h"
+#import "IRMonitor.h"
 
-@interface MonitorViewController : UIViewController
+@interface MonitorViewController : UITableViewController
 
 @end

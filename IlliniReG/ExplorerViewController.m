@@ -126,8 +126,16 @@
         if ([currentEntry type] != SECTION) {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         } else {
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"CRN: %@, Status: %@", cell.detailTextLabel.text, ((IRExplorerSectionEntry *)currentEntry).enrollmentStatus];
+            NSString *enrollmentStatus = ((IRExplorerSectionEntry *)currentEntry).enrollmentStatus;
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"CRN: %@, Status: %@", cell.detailTextLabel.text, enrollmentStatus];
             cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+            if ([enrollmentStatus isEqualToString:@"Open"]) {
+                cell.imageView.image = [UIImage imageNamed:@"statusGreen"];
+            } else if ([enrollmentStatus isEqualToString:@"Closed"]) {
+                cell.imageView.image = [UIImage imageNamed:@"statusRed"];
+            } else {
+                cell.imageView.image = [UIImage imageNamed:@"statusYellow"];
+            }
         }
 
         return cell;
@@ -160,7 +168,6 @@
             _subLayerExplorerViewController.explorerEntryType = [currentSelectedEntry type] + 1;
             _subLayerExplorerViewController.title = currentSelectedEntry.title;
             _subLayerExplorerViewController.explorerURL = currentSelectedEntry.subLayerURL;
-            [_subLayerExplorerViewController loadDataToTableView];
             
             [self.navigationController pushViewController:_subLayerExplorerViewController animated:YES];
         }
@@ -266,7 +273,10 @@
     if (refreshControl == nil) {
         [self displayActivityView];
     }
-    [AppDelegate downloadDataFromURL:_explorerURL withCompletionHandler:^(NSData *xmlData) {
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:[_explorerURL absoluteString] parameters:nil success:^(AFHTTPRequestOperation *operation, NSData* xmlData) {
         if (xmlData != nil) {
             NSLog(@"Received XML Data.");
             RXMLElement *xmlElement = [RXMLElement elementFromXMLData:xmlData];
@@ -304,6 +314,14 @@
         if (refreshControl == nil) {
             [self removeActivityView];
         }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Error"
+                                                        message:@"Please check your Internet connection."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        [self removeActivityView];
     }];
 }
 
