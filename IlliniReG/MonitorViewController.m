@@ -10,6 +10,10 @@
 
 @interface MonitorViewController () 
 
+@property (nonatomic, strong) UIActivityIndicatorView *activeMonitorsActivityIndicatorView;
+@property (nonatomic, strong) UIActivityIndicatorView *inactiveMonitorsActivityIndicatorView;
+@property (nonatomic, strong) UIActivityIndicatorView *succeededMonitorsActivityIndicatorView;
+
 @property (nonatomic, strong) NSMutableArray *monitors;
 
 @end
@@ -19,6 +23,13 @@
 - (id)init {
     self = [super initWithStyle:UITableViewStyleGrouped];
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [_activeMonitorsActivityIndicatorView startAnimating];
+    [_inactiveMonitorsActivityIndicatorView startAnimating];
+    [_succeededMonitorsActivityIndicatorView startAnimating];
 }
 
 - (void)viewDidLoad {
@@ -40,6 +51,8 @@
             MonitorSettingsViewController *monitorSettingsViewController = [[MonitorSettingsViewController alloc] initWithMonitor:nil];
             [safeSelf.navigationController pushViewController:monitorSettingsViewController animated:YES];
         }];
+        safeSelf.activeMonitorsActivityIndicatorView.frame = CGRectMake(190.0, 18.0, 0.0, 0.0);
+        [[safeSelf.tableView headerViewForSection:1] addSubview:safeSelf.activeMonitorsActivityIndicatorView];
     }];
     
     // Active Monitors
@@ -76,12 +89,45 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Table View delegate
+
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if(section == 1) {
+        UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 16.0)];
+        
+        UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0, 10.0, 320.0, 16.0)];
+        
+        headerLabel.backgroundColor = [tableView backgroundColor];
+        headerLabel.text = NSLocalizedString(@"Choose a Network...", @"Choose a Network...");
+        headerLabel.font = [UIFont boldSystemFontOfSize:16.0];
+        headerLabel.textColor = [UIColor colorWithRed:61.0/255.0 green:77.0/255.0 blue:99.0/255.0 alpha:1.0];
+        headerLabel.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.65];
+        headerLabel.shadowOffset = CGSizeMake(0.0, 1.0);
+        
+        [header addSubview:headerLabel];
+        
+        _activeMonitorsActivityIndicatorView.frame = CGRectMake(190.0, 18.0, 0.0, 0.0);
+        [header addSubview:_activeMonitorsActivityIndicatorView];
+        
+        return header;
+    } else {
+        return nil;
+    }
+}
+
+
+
 #pragma mark - Table view data source
 
 - (void)retrieveMonitorList {
-    [self displayActivityView];
+    //[self.tableView beginUpdates];
+    for (NSInteger i = 0; i < [_monitors count]; i++) {
+        
+    }
     
-    [self removeActivityView];
+//    [_activeMonitorsActivityIndicatorView stopAnimating];
+//    [_inactiveMonitorsActivityIndicatorView stopAnimating];
+//    [_succeededMonitorsActivityIndicatorView stopAnimating];
 }
 
 - (void)jumpToSettingsView {
