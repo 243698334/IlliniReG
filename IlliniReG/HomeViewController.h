@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <JMStaticContentTableViewController/JMStaticContentTableViewController.h>
+#import <GooglePlus/GooglePlus.h>
+#import "AppDelegate.h"
+#import "GooglePlusSignInViewController.h"
 
-@interface HomeViewController : UIViewController
+@interface HomeViewController : JMStaticContentTableViewController
 
 @end

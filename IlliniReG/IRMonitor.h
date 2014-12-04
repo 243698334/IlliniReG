@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "IRMonitorEntry.h"
+#import "IRSectionEntry.h"
 
 typedef enum {
     ON = 0,
@@ -17,11 +17,18 @@ typedef enum {
 
 @interface IRMonitor : NSObject
 
+extern NSString * const MonitorAPI;
+
++ (IRMonitorStatus)stringToStatus:(NSString *)statusString;
++ (NSString *)statusToString:(IRMonitorStatus)status;
+
+@property (nonatomic, copy) NSNumber *monitorID;
+@property (nonatomic, copy) NSString *netID;
 @property (nonatomic) IRMonitorStatus status;
 @property (nonatomic) BOOL autoRegister;
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSMutableArray *entries;
-@property (nonatomic) NSInteger refreshFrequency;
+@property (nonatomic, copy) NSArray *entries;
+@property (nonatomic, copy) NSNumber *refreshFrequency;
 @property (nonatomic, copy) NSString *userAgentContent;
 @property (nonatomic, copy) NSString *userAgentType;
 @property (nonatomic) BOOL pushNotification;

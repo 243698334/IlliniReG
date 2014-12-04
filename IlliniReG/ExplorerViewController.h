@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <DejalActivityView/DejalActivityView.h>
 #import <AFNetworking/AFNetworking.h>
-#import "AppDelegate.h"
-#import "IRExplorer.h"
+#import <RMMapper/NSUserDefaults+RMSaveCustomObject.h>
 #import "WishListViewController.h"
+#import "IRExplorer.h"
+#import "IRSectionEntry.h"
 
 @interface ExplorerViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, UISearchResultsUpdating, UIAlertViewDelegate, UINavigationBarDelegate>
 

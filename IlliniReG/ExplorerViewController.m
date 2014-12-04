@@ -292,6 +292,11 @@
                     NSData *sectionXMLData = [NSURLConnection sendSynchronousRequest:currentSectionURLRequest returningResponse:&response error:&error];
                     if (sectionXMLData != nil) {
                         RXMLElement *sectionXMLElement = [RXMLElement elementFromXMLData:sectionXMLData];
+                        currentSectionEntry.year = [[sectionXMLElement child:@"parents"] child:@"calendarYear"].text;
+                        currentSectionEntry.semester = [[sectionXMLElement child:@"parents"] child:@"term"].text;
+                        currentSectionEntry.subject = [[[sectionXMLElement child:@"parents"] child:@"subject"] attribute:@"id"];
+                        currentSectionEntry.course = [[[sectionXMLElement child:@"parents"] child:@"course"] attribute:@"id"];
+                        currentSectionEntry.section = [sectionXMLElement child:@"sectionNumber"].text;
                         currentSectionEntry.statusCode = [sectionXMLElement child:@"statusCode"].text;
                         currentSectionEntry.partOfTerm = [sectionXMLElement child:@"partOfTerm"].text;
                         currentSectionEntry.sectionStatusCode = [sectionXMLElement child:@"sectionStatusCode"].text;
@@ -315,12 +320,12 @@
             [self removeActivityView];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Error"
-                                                        message:@"Please check your Internet connection."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
+        UIAlertView *networkErrorAlert = [[UIAlertView alloc] initWithTitle:@"Network Error"
+                                                                    message:@"Please check your Internet connection."
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil];
+        [networkErrorAlert show];
         [self removeActivityView];
     }];
 }
@@ -359,23 +364,35 @@
 #pragma mark - Add to Wishlist
 
 - (void)addSectionsToWishList {
-    for (IRExplorerEntry *currentSelectedEntry in selectedEntries) {
-        NSLog(@"Selected: %@", [currentSelectedEntry title]);
+    NSString *currentUserNetID = @"_shared";
+    NSMutableDictionary *wishListDictionary = [[NSUserDefaults standardUserDefaults] rm_customObjectForKey:@"WishList"];
+    NSMutableArray *wishListArray = [wishListDictionary objectForKey:currentUserNetID];
+    if (wishListArray == nil) {
+        wishListArray = [[NSMutableArray alloc] init];
     }
-    WishListViewController *wishListViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"wishList"];
+    for (IRExplorerSectionEntry *currentSelectedEntry in selectedEntries) {
+        NSLog(@"Selected: %@ %@, %@", currentSelectedEntry.subject, currentSelectedEntry.course, currentSelectedEntry.section);
+        IRSectionEntry *currentSectionEntry = [[IRSectionEntry alloc] init];
+        currentSectionEntry.year = currentSelectedEntry.year;
+        currentSectionEntry.semester = currentSelectedEntry.semester;
+        currentSectionEntry.subject = currentSelectedEntry.subject;
+        currentSectionEntry.course = currentSelectedEntry.course;
+        currentSectionEntry.section = currentSelectedEntry.section;
+        currentSectionEntry.statusCode = currentSelectedEntry.statusCode;
+        currentSectionEntry.partOfTerm = currentSelectedEntry.partOfTerm;
+        currentSectionEntry.sectionStatusCode = currentSelectedEntry.sectionStatusCode;
+        currentSectionEntry.enrollmentStatus = currentSelectedEntry.enrollmentStatus;
+        currentSectionEntry.startDate = currentSelectedEntry.startDate;
+        currentSectionEntry.endDate = currentSelectedEntry.endDate;
+        [wishListArray addObject:currentSectionEntry];
+    }
+    [wishListDictionary setObject:wishListArray forKey:currentUserNetID];
+    [[NSUserDefaults standardUserDefaults] rm_setCustomObject:wishListDictionary forKey:@"WishList"];
+        
+    WishListViewController *wishListViewController = [[WishListViewController alloc] init];
     [self.navigationController pushViewController:wishListViewController animated:YES];
     //[self.navigationController presentViewController:wishListViewController animated:YES completion:nil];
     
-//    [self displayActivityView];
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    NSDictionary *parameters = @{@"foo": @"bar"};
-//    [manager POST:@"http://example.com/resources.json" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"JSON: %@", responseObject);
-//        [self removeActivityView];
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"Error: %@", error);
-//        [self removeActivityView];
-//    }];
 }
 
 /*

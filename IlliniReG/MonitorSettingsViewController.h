@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AFNetworking/AFNetworking.h>
+#import <DejalActivityView/DejalActivityView.h>
 #import <JMStaticContentTableViewController/JMStaticContentTableViewController.h>
 #import "IRMonitor.h"
 
-@interface MonitorSettingsViewController : JMStaticContentTableViewController
+@interface MonitorSettingsViewController : JMStaticContentTableViewController <UIAlertViewDelegate>
 
 @property (nonatomic, strong) IRMonitor *monitor;
+@property (nonatomic, readonly) BOOL isUpdating;
 
 - (id)initWithMonitor:(IRMonitor *)monitor;
 

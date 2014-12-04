@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <RMMapper/NSUserDefaults+RMSaveCustomObject.h>
+#import <JMStaticContentTableViewController/JMStaticContentTableViewController.h>
+#import "IRWishList.h"
 
-@interface WishListViewController : UITableViewController
+@interface WishListViewController : JMStaticContentTableViewController <UIAlertViewDelegate>
+
+@property (nonatomic, copy) IRWishList *wishList;
 
 @end
