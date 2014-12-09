@@ -7,10 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <RMMapper/NSObject+RMArchivable.h>
-#import "NSObject+RMArchivable.h"
 
-@interface IRSectionEntry : NSObject
+@interface IRSectionEntry : NSObject <NSCoding>
 
 @property (nonatomic, copy) NSString *year;
 @property (nonatomic, copy) NSString *semester;
@@ -18,7 +16,6 @@
 @property (nonatomic, copy) NSString *course;
 @property (nonatomic, copy) NSString *section;
 @property (nonatomic, copy) NSString *crn;
-
 @property (nonatomic, copy) NSString *statusCode;
 @property (nonatomic, copy) NSString *partOfTerm;
 @property (nonatomic, copy) NSString *sectionStatusCode;
@@ -26,8 +23,5 @@
 @property (nonatomic, copy) NSString *startDate;
 @property (nonatomic, copy) NSString *endDate;
 
-//- (id)initWithCoder:(NSCoder *)decoder;
-//
-//- (void)encodeWithCoder:(NSCoder *)encoder;
-
 @end
+

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IRSectionEntry.h"
 
 typedef enum {
     SCHEDULE = 0,
@@ -32,12 +33,18 @@ typedef enum {
 //
 
 @property (nonatomic) IRExplorerEntryType type;
+
+// UI display
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic, copy) NSURL *subLayerURL;
 
+// XML data
 @property (nonatomic, copy) NSString *xmlID;
 @property (nonatomic, copy) NSString *xmlText;
+
+// SectionEntry object
+@property (nonatomic, copy) IRSectionEntry *sectionEntry;
 
 + (NSString *)typeToXMLTag:(IRExplorerEntryType)type plural:(BOOL)isPlural;
 + (IRExplorerEntryType)xmlTagToType:(NSString *)xmlTag;

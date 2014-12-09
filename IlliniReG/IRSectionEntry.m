@@ -8,41 +8,68 @@
 
 #import "IRSectionEntry.h"
 
+
 @implementation IRSectionEntry
 
-//- (void)encodeWithCoder:(NSCoder *)encoder {
-//    [encoder encodeObject:self.year forKey:@"question"];
-//    [encoder encodeObject:self.semester forKey:@"semester"];
-//    [encoder encodeObject:self.subject forKey:@"subject"];
-//    [encoder encodeObject:self.course forKey:@"course"];
-//    [encoder encodeObject:self.section forKey:@"section"];
-//    [encoder encodeObject:self.crn forKey:@"crn"];
-//
-//    [encoder encodeObject:self.statusCode forKey:@"statusCode"];
-//    [encoder encodeObject:self.partOfTerm forKey:@"partOfTerm"];
-//    [encoder encodeObject:self.sectionStatusCode forKey:@"sectionStatusCode"];
-//    [encoder encodeObject:self.enrollmentStatus forKey:@"enrollmentStatus"];
-//    [encoder encodeObject:self.startDate forKey:@"startDate"];
-//    [encoder encodeObject:self.endDate forKey:@"endDate"];
-//}
-//
-//- (id)initWithCoder:(NSCoder *)decoder {
-//    if((self = [super init])) {
-//        self.year = [decoder decodeObjectForKey:@"year"];
-//        self.semester = [decoder decodeObjectForKey:@"semester"];
-//        self.subject = [decoder decodeObjectForKey:@"subject"];
-//        self.course = [decoder decodeObjectForKey:@"course"];
-//        self.section = [decoder decodeObjectForKey:@"section"];
-//        self.crn = [decoder decodeObjectForKey:@"crn"];
-//
-//        self.statusCode = [decoder decodeObjectForKey:@"statusCode"];
-//        self.partOfTerm = [decoder decodeObjectForKey:@"partOfTerm"];
-//        self.sectionStatusCode = [decoder decodeObjectForKey:@"sectionStatusCode"];
-//        self.enrollmentStatus = [decoder decodeObjectForKey:@"enrollmentStatus"];
-//        self.startDate = [decoder decodeObjectForKey:@"startDate"];
-//        self.endDate = [decoder decodeObjectForKey:@"endDate"];
-//    }
-//    return self;
-//}
+NSString * const kYearKey = @"year";
+NSString * const kSemesterKey = @"semester";
+NSString * const kSubjectKey = @"subject";
+NSString * const kCourseKey = @"course";
+NSString * const kSectionKey = @"section";
+NSString * const kCRNKey = @"crn";
+NSString * const kStatusCodeKey = @"statusCode";
+NSString * const kPartOfTermKey = @"partOfTerm";
+NSString * const kSectionStatusCodeKey = @"sectionStatusCode";
+NSString * const kEnrollmentStatusKey = @"enrollmentStatus";
+NSString * const kStartDateKey = @"startDate";
+NSString * const kEndDateKey = @"endDate";
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super init]) {
+        _year = [aDecoder decodeObjectForKey:kYearKey];
+        _semester = [aDecoder decodeObjectForKey:kSemesterKey];
+        _subject = [aDecoder decodeObjectForKey:kSubjectKey];
+        _course = [aDecoder decodeObjectForKey:kCourseKey];
+        _section = [aDecoder decodeObjectForKey:kSectionKey];
+        _crn = [aDecoder decodeObjectForKey:kCRNKey];
+        _statusCode = [aDecoder decodeObjectForKey:kStatusCodeKey];
+        _partOfTerm = [aDecoder decodeObjectForKey:kPartOfTermKey];
+        _sectionStatusCode = [aDecoder decodeObjectForKey:kSectionStatusCodeKey];
+        _enrollmentStatus = [aDecoder decodeObjectForKey:kEnrollmentStatusKey];
+        _startDate = [aDecoder decodeObjectForKey:kStartDateKey];
+        _endDate = [aDecoder decodeObjectForKey:kEndDateKey];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:_year forKey:kYearKey];
+    [aCoder encodeObject:_semester forKey:kSemesterKey];
+    [aCoder encodeObject:_subject forKey:kSubjectKey];
+    [aCoder encodeObject:_course forKey:kCourseKey];
+    [aCoder encodeObject:_section forKey:kSectionKey];
+    [aCoder encodeObject:_crn forKey:kCRNKey];
+    [aCoder encodeObject:_statusCode forKey:kStatusCodeKey];
+    [aCoder encodeObject:_partOfTerm forKey:kPartOfTermKey];
+    [aCoder encodeObject:_sectionStatusCode forKey:kSectionStatusCodeKey];
+    [aCoder encodeObject:_enrollmentStatus forKey:kEnrollmentStatusKey];
+    [aCoder encodeObject:_startDate forKey:kStartDateKey];
+    [aCoder encodeObject:_endDate forKey:kEndDateKey];
+}
+
+- (BOOL)isEqual:(id)object {
+    if ([object isKindOfClass:[IRSectionEntry class]]) {
+        IRSectionEntry *otherSectionEntry = (IRSectionEntry *)object;
+        return [otherSectionEntry.year isEqualToString:_year] && [otherSectionEntry.semester isEqualToString:_semester]
+        && [otherSectionEntry.subject isEqualToString:_subject] && [otherSectionEntry.course isEqualToString:_course]
+        && [otherSectionEntry.crn isEqualToString:_crn] && [otherSectionEntry.statusCode isEqualToString:_statusCode]
+        && [otherSectionEntry.partOfTerm isEqualToString:_partOfTerm] && [otherSectionEntry.sectionStatusCode isEqualToString:_sectionStatusCode]
+        && [otherSectionEntry.enrollmentStatus isEqualToString:_enrollmentStatus] && [otherSectionEntry.startDate isEqualToString:_startDate]
+        && [otherSectionEntry.endDate isEqualToString:_endDate];
+    }
+    return NO;
+}
 
 @end
+
+

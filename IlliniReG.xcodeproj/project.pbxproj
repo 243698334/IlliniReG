@@ -18,7 +18,6 @@
 		0E3946051A2BE99700E39228 /* WishListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E3946041A2BE99700E39228 /* WishListViewController.m */; };
 		0E4C0F1A1A1C0ACA006B6940 /* IRExplorerEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C0F191A1C0ACA006B6940 /* IRExplorerEntry.m */; };
 		0E4C0F1C1A1C9D8F006B6940 /* IRExplorerListEntryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C0F1B1A1C9D8F006B6940 /* IRExplorerListEntryTest.m */; };
-		0E4C0F1F1A1CBFF8006B6940 /* IRExplorerSectionEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C0F1E1A1CBFF8006B6940 /* IRExplorerSectionEntry.m */; };
 		0E4C0F211A1CDEEC006B6940 /* IRExplorerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C0F201A1CDEEC006B6940 /* IRExplorerTest.m */; };
 		0E4C1C101A30775C0042A5C9 /* IRWishList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C1C0F1A30775C0042A5C9 /* IRWishList.m */; };
 		0E4C1C131A3077DB0042A5C9 /* IRSectionEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C1C121A3077DB0042A5C9 /* IRSectionEntry.m */; };
@@ -69,8 +68,6 @@
 		0E4C0F181A1C0ACA006B6940 /* IRExplorerEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRExplorerEntry.h; sourceTree = "<group>"; };
 		0E4C0F191A1C0ACA006B6940 /* IRExplorerEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRExplorerEntry.m; sourceTree = "<group>"; };
 		0E4C0F1B1A1C9D8F006B6940 /* IRExplorerListEntryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRExplorerListEntryTest.m; sourceTree = "<group>"; };
-		0E4C0F1D1A1CBFF8006B6940 /* IRExplorerSectionEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRExplorerSectionEntry.h; sourceTree = "<group>"; };
-		0E4C0F1E1A1CBFF8006B6940 /* IRExplorerSectionEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRExplorerSectionEntry.m; sourceTree = "<group>"; };
 		0E4C0F201A1CDEEC006B6940 /* IRExplorerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRExplorerTest.m; sourceTree = "<group>"; };
 		0E4C1C0E1A30775C0042A5C9 /* IRWishList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRWishList.h; sourceTree = "<group>"; };
 		0E4C1C0F1A30775C0042A5C9 /* IRWishList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRWishList.m; sourceTree = "<group>"; };
@@ -184,8 +181,6 @@
 				0E2494E21A27017A00F0905B /* IRExplorer.m */,
 				0E4C0F181A1C0ACA006B6940 /* IRExplorerEntry.h */,
 				0E4C0F191A1C0ACA006B6940 /* IRExplorerEntry.m */,
-				0E4C0F1D1A1CBFF8006B6940 /* IRExplorerSectionEntry.h */,
-				0E4C0F1E1A1CBFF8006B6940 /* IRExplorerSectionEntry.m */,
 				0E0DD09D1A2C681E0029D005 /* IRMonitor.h */,
 				0E0DD09E1A2C681E0029D005 /* IRMonitor.m */,
 				0E4C1C111A3077DB0042A5C9 /* IRSectionEntry.h */,
@@ -375,7 +370,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E4C0F1F1A1CBFF8006B6940 /* IRExplorerSectionEntry.m in Sources */,
 				0E3946051A2BE99700E39228 /* WishListViewController.m in Sources */,
 				0E4C1C131A3077DB0042A5C9 /* IRSectionEntry.m in Sources */,
 				0E33B6451A19DB230036F636 /* AppDelegate.m in Sources */,

@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <DejalActivityView/DejalActivityView.h>
 #import <AFNetworking/AFNetworking.h>
-#import <RMMapper/NSUserDefaults+RMSaveCustomObject.h>
 #import "WishListViewController.h"
 #import "IRExplorer.h"
 #import "IRSectionEntry.h"

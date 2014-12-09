@@ -11,6 +11,7 @@
 #import <DejalActivityView/DejalActivityView.h>
 #import <JMStaticContentTableViewController/JMStaticContentTableViewController.h>
 #import "IRMonitor.h"
+#import "IRSectionEntry.h"
 
 @interface MonitorSettingsViewController : JMStaticContentTableViewController <UIAlertViewDelegate>
 

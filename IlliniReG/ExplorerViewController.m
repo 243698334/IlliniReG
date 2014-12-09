@@ -17,7 +17,6 @@
     NSArray *entries;
     NSArray *indexedEntries;
     NSArray *indexedEntriesSectionTitles;
-    NSMutableArray *selectedEntries;
     NSMutableArray *filteredSearchResults;
 }
 
@@ -49,7 +48,7 @@
     
     // Navigation Bar
     if (_explorerEntryType == SECTION) {
-        addToWishListButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Add to Wish List" style:UIBarButtonItemStyleDone target:self action:@selector(addSectionsToWishList)];
+        addToWishListButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Wish List" style:UIBarButtonItemStyleDone target:self action:@selector(pushWishListViewController)];
         self.navigationItem.rightBarButtonItem = addToWishListButtonItem;
     }
     
@@ -126,9 +125,8 @@
         if ([currentEntry type] != SECTION) {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         } else {
-            NSString *enrollmentStatus = ((IRExplorerSectionEntry *)currentEntry).enrollmentStatus;
+            NSString *enrollmentStatus = currentEntry.sectionEntry.enrollmentStatus;
             cell.detailTextLabel.text = [NSString stringWithFormat:@"CRN: %@, Status: %@", cell.detailTextLabel.text, enrollmentStatus];
-            cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
             if ([enrollmentStatus isEqualToString:@"Open"]) {
                 cell.imageView.image = [UIImage imageNamed:@"statusGreen"];
             } else if ([enrollmentStatus isEqualToString:@"Closed"]) {
@@ -136,6 +134,29 @@
             } else {
                 cell.imageView.image = [UIImage imageNamed:@"statusYellow"];
             }
+            
+            // Match Wish List
+            NSString *currentUserNetID = @"_shared";
+            NSData *wishListDictionaryData = [[NSUserDefaults standardUserDefaults] objectForKey:@"WishList"];
+            if (wishListDictionaryData == nil) {
+                cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+            } else {
+                BOOL isInWishList = NO;
+                NSMutableDictionary *wishListDictionary = [NSKeyedUnarchiver unarchiveObjectWithData:wishListDictionaryData];
+                NSMutableArray *wishListArray = [wishListDictionary objectForKey:currentUserNetID];
+                for (IRSectionEntry *currentWishListSectionEntry in wishListArray) {
+                    if ([currentWishListSectionEntry.crn isEqualToString:currentEntry.sectionEntry.crn]) {
+                        isInWishList = YES;
+                        break;
+                    }
+                }
+                if (isInWishList) {
+                    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                } else {
+                    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+                }
+            }
+
         }
 
         return cell;
@@ -150,20 +171,16 @@
         IRExplorerEntry *currentSelectedEntry = (_explorerEntryType == SUBJECT || _explorerEntryType == COURSE) ?
             [[indexedEntries objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] : [entries objectAtIndex:indexPath.row];
         if ([currentSelectedEntry type] == SECTION) {
-            if ([tableView cellForRowAtIndexPath:indexPath].accessoryType == UITableViewCellAccessoryCheckmark) {
-                if (selectedEntries != nil) {
-                    [selectedEntries removeObject:currentSelectedEntry];
-                }
-                [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-            } else {
-                if (selectedEntries == nil) {
-                    selectedEntries = [[NSMutableArray alloc] init];
-                }
-                [selectedEntries addObject:currentSelectedEntry];
+            if ([tableView cellForRowAtIndexPath:indexPath].accessoryType == UITableViewCellAccessoryDetailDisclosureButton) {
+                // select
+                [self updateWishList:currentSelectedEntry removed:NO];
                 [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                // deselect
+                [self updateWishList:currentSelectedEntry removed:YES];
+                [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
             }
         } else {
-            //_subLayerExplorerViewController = [[ExplorerViewController alloc] initWithExplorerEntryType:[currentSelectedEntry type] + 1];
             _subLayerExplorerViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"explorer"];
             _subLayerExplorerViewController.explorerEntryType = [currentSelectedEntry type] + 1;
             _subLayerExplorerViewController.title = currentSelectedEntry.title;
@@ -284,31 +301,30 @@
             IRExplorerEntryType listEntryType = [IRExplorerEntry xmlTagToType:xmlElement.tag] + 1;
             
             [xmlElement iterate:[[[IRExplorerEntry typeToXMLTag:listEntryType plural:YES] stringByAppendingString:@"."] stringByAppendingString:[IRExplorerEntry typeToXMLTag:listEntryType plural:NO]] usingBlock: ^(RXMLElement *entry) {
+                IRExplorerEntry *currentEntry = [[IRExplorerEntry alloc] initWithXMLID:[entry attribute:@"id"] text:entry.text href:[entry attribute:@"href"] type:entry.tag];
                 if (listEntryType == SECTION) {
-                    IRExplorerSectionEntry *currentSectionEntry = [[IRExplorerSectionEntry alloc] initWithXMLID:[entry attribute:@"id"] text:entry.text href:[entry attribute:@"href"] type:entry.tag];
+                    currentEntry.sectionEntry = [[IRSectionEntry alloc] init];
                     NSURLRequest *currentSectionURLRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[entry attribute:@"href"]]];
                     NSURLResponse *response = nil;
                     NSError *error = nil;
                     NSData *sectionXMLData = [NSURLConnection sendSynchronousRequest:currentSectionURLRequest returningResponse:&response error:&error];
                     if (sectionXMLData != nil) {
                         RXMLElement *sectionXMLElement = [RXMLElement elementFromXMLData:sectionXMLData];
-                        currentSectionEntry.year = [[sectionXMLElement child:@"parents"] child:@"calendarYear"].text;
-                        currentSectionEntry.semester = [[sectionXMLElement child:@"parents"] child:@"term"].text;
-                        currentSectionEntry.subject = [[[sectionXMLElement child:@"parents"] child:@"subject"] attribute:@"id"];
-                        currentSectionEntry.course = [[[sectionXMLElement child:@"parents"] child:@"course"] attribute:@"id"];
-                        currentSectionEntry.section = [sectionXMLElement child:@"sectionNumber"].text;
-                        currentSectionEntry.statusCode = [sectionXMLElement child:@"statusCode"].text;
-                        currentSectionEntry.partOfTerm = [sectionXMLElement child:@"partOfTerm"].text;
-                        currentSectionEntry.sectionStatusCode = [sectionXMLElement child:@"sectionStatusCode"].text;
-                        currentSectionEntry.enrollmentStatus = [sectionXMLElement child:@"enrollmentStatus"].text;
-                        currentSectionEntry.startDate = [sectionXMLElement child:@"startDate"].text;
-                        currentSectionEntry.endDate = [sectionXMLElement child:@"endDate"].text;
+                        currentEntry.sectionEntry.year = [[sectionXMLElement child:@"parents"] child:@"calendarYear"].text;
+                        currentEntry.sectionEntry.semester = [[sectionXMLElement child:@"parents"] child:@"term"].text;
+                        currentEntry.sectionEntry.subject = [[[sectionXMLElement child:@"parents"] child:@"subject"] attribute:@"id"];
+                        currentEntry.sectionEntry.course = [[[sectionXMLElement child:@"parents"] child:@"course"] attribute:@"id"];
+                        currentEntry.sectionEntry.section = [sectionXMLElement child:@"sectionNumber"].text;
+                        currentEntry.sectionEntry.crn = [sectionXMLElement attribute:@"id"];
+                        currentEntry.sectionEntry.statusCode = [sectionXMLElement child:@"statusCode"].text;
+                        currentEntry.sectionEntry.partOfTerm = [sectionXMLElement child:@"partOfTerm"].text;
+                        currentEntry.sectionEntry.sectionStatusCode = [sectionXMLElement child:@"sectionStatusCode"].text;
+                        currentEntry.sectionEntry.enrollmentStatus = [sectionXMLElement child:@"enrollmentStatus"].text;
+                        currentEntry.sectionEntry.startDate = [sectionXMLElement child:@"startDate"].text;
+                        currentEntry.sectionEntry.endDate = [sectionXMLElement child:@"endDate"].text;
                     }
-                    [currentEntries addObject:currentSectionEntry];
-                } else {
-                    IRExplorerEntry *currentEntry = [[IRExplorerEntry alloc] initWithXMLID:[entry attribute:@"id"] text:entry.text href:[entry attribute:@"href"] type:entry.tag];
-                    [currentEntries addObject:currentEntry];
                 }
+                [currentEntries addObject:currentEntry];
             }];
             entries = [currentEntries copy];
             if (_explorerEntryType == SUBJECT || _explorerEntryType == COURSE) {
@@ -360,93 +376,38 @@
     [[self class] cancelPreviousPerformRequestsWithTarget:self];
 }
 
+#pragma mark - Wish List
 
-#pragma mark - Add to Wishlist
-
-- (void)addSectionsToWishList {
+- (void)updateWishList:(IRExplorerEntry *)entry removed:(BOOL)isRemoved {
     NSString *currentUserNetID = @"_shared";
-    NSMutableDictionary *wishListDictionary = [[NSUserDefaults standardUserDefaults] rm_customObjectForKey:@"WishList"];
-    NSMutableArray *wishListArray = [wishListDictionary objectForKey:currentUserNetID];
-    if (wishListArray == nil) {
+    NSMutableDictionary *wishListDictionary = nil;
+    NSMutableArray *wishListArray = nil;
+    NSData *wishListDictionaryData = [[NSUserDefaults standardUserDefaults] objectForKey:@"WishList"];
+    if (wishListDictionaryData == nil) {
+        NSLog(@"Creating new Wish List for %@", currentUserNetID);
+        wishListDictionary = [[NSMutableDictionary alloc] init];
         wishListArray = [[NSMutableArray alloc] init];
+    } else {
+        wishListDictionary = [NSKeyedUnarchiver unarchiveObjectWithData:wishListDictionaryData];
+        wishListArray = [[wishListDictionary objectForKey:currentUserNetID] mutableCopy];
+        if (wishListArray == nil) {
+            wishListArray = [[NSMutableArray alloc] init];
+        }
     }
-    for (IRExplorerSectionEntry *currentSelectedEntry in selectedEntries) {
-        NSLog(@"Selected: %@ %@, %@", currentSelectedEntry.subject, currentSelectedEntry.course, currentSelectedEntry.section);
-        IRSectionEntry *currentSectionEntry = [[IRSectionEntry alloc] init];
-        currentSectionEntry.year = currentSelectedEntry.year;
-        currentSectionEntry.semester = currentSelectedEntry.semester;
-        currentSectionEntry.subject = currentSelectedEntry.subject;
-        currentSectionEntry.course = currentSelectedEntry.course;
-        currentSectionEntry.section = currentSelectedEntry.section;
-        currentSectionEntry.statusCode = currentSelectedEntry.statusCode;
-        currentSectionEntry.partOfTerm = currentSelectedEntry.partOfTerm;
-        currentSectionEntry.sectionStatusCode = currentSelectedEntry.sectionStatusCode;
-        currentSectionEntry.enrollmentStatus = currentSelectedEntry.enrollmentStatus;
-        currentSectionEntry.startDate = currentSelectedEntry.startDate;
-        currentSectionEntry.endDate = currentSelectedEntry.endDate;
-        [wishListArray addObject:currentSectionEntry];
+    if (isRemoved) {
+        [wishListArray removeObject:entry.sectionEntry];
+    } else {
+        [wishListArray addObject:entry.sectionEntry];
     }
     [wishListDictionary setObject:wishListArray forKey:currentUserNetID];
-    [[NSUserDefaults standardUserDefaults] rm_setCustomObject:wishListDictionary forKey:@"WishList"];
-        
+    wishListDictionaryData = [NSKeyedArchiver archivedDataWithRootObject:wishListDictionary];
+    [[NSUserDefaults standardUserDefaults] setObject:wishListDictionaryData forKey:@"WishList"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)pushWishListViewController {
     WishListViewController *wishListViewController = [[WishListViewController alloc] init];
     [self.navigationController pushViewController:wishListViewController animated:YES];
-    //[self.navigationController presentViewController:wishListViewController animated:YES completion:nil];
-    
 }
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

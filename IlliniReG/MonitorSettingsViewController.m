@@ -189,13 +189,13 @@
 - (void)loadSectionList {
     [self.tableView beginUpdates];
     for (NSUInteger i = 0; i < [_monitor.entries count]; i++) {
-        IRSectionEntry *currentSectionEntry = [_monitor.entries objectAtIndex:i];
-        [self insertCell:^(JMStaticContentTableViewCell *staticContentCell, UITableViewCell *cell, NSIndexPath *indexPath) {
-            staticContentCell.reuseIdentifier = @"SectionCell";
-            staticContentCell.cellStyle = UITableViewCellStyleSubtitle;
-            cell.textLabel.text = currentSectionEntry.section;
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"CRN: %@", currentSectionEntry.crn];
-        } atIndexPath:[NSIndexPath indexPathForRow:i inSection:_SectionListSectionIndex] animated:YES];
+//        IRSectionEntry *currentSectionEntry = [_monitor.entries objectAtIndex:i];
+//        [self insertCell:^(JMStaticContentTableViewCell *staticContentCell, UITableViewCell *cell, NSIndexPath *indexPath) {
+//            staticContentCell.reuseIdentifier = @"SectionCell";
+//            staticContentCell.cellStyle = UITableViewCellStyleSubtitle;
+//            cell.textLabel.text = currentSectionEntry.section;
+//            cell.detailTextLabel.text = [NSString stringWithFormat:@"CRN: %@", currentSectionEntry.crn];
+//        } atIndexPath:[NSIndexPath indexPathForRow:i inSection:_SectionListSectionIndex] animated:YES];
     }
     [self.tableView endUpdates];
 }

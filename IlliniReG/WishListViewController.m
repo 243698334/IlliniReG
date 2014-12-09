@@ -123,11 +123,12 @@
 }
 
 - (void)loadWishListAndMonitorList {
-    [self.tableView beginUpdates];
     NSString *currentUserNetID = @"_shared";
-    NSMutableDictionary *wishListDictionary = [[NSUserDefaults standardUserDefaults] rm_customObjectForKey:@"WishList"];
+    NSData *wishListDictionaryData = [[NSUserDefaults standardUserDefaults] objectForKey:@"WishList"];
+    NSMutableDictionary *wishListDictionary = [NSKeyedUnarchiver unarchiveObjectWithData:wishListDictionaryData];
     NSMutableArray *wishListArray = [wishListDictionary objectForKey:currentUserNetID];
     
+    [self.tableView beginUpdates];
     for (NSUInteger i = 0; i < [wishListArray count]; i++) {
         IRSectionEntry *currentSectionEntry = [wishListArray objectAtIndex:i];
         [self insertCell:^(JMStaticContentTableViewCell *staticContentCell, UITableViewCell *cell, NSIndexPath *indexPath) {
@@ -137,12 +138,6 @@
             cell.detailTextLabel.text = [NSString stringWithFormat:@"CRN: %@", currentSectionEntry.crn];
         } atIndexPath:[NSIndexPath indexPathForItem:i inSection:_WishListSectionIndex] animated:YES];
     }
-    [self insertCell:^(JMStaticContentTableViewCell *staticContentCell, UITableViewCell *cell, NSIndexPath *indexPath) {
-        staticContentCell.reuseIdentifier = @"SectionCell";
-        staticContentCell.cellStyle = UITableViewCellStyleSubtitle;
-        cell.textLabel.text = @"Should be here";
-        cell.detailTextLabel.text = @"CRN: ";
-    } atIndexPath:[NSIndexPath indexPathForItem:0 inSection:_WishListSectionIndex] animated:YES];
     [self.tableView endUpdates];
 }
 

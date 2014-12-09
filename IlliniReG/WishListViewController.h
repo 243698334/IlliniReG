@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <RMMapper/NSUserDefaults+RMSaveCustomObject.h>
 #import <JMStaticContentTableViewController/JMStaticContentTableViewController.h>
 #import "IRWishList.h"
 

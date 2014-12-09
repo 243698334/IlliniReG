@@ -32,22 +32,6 @@
 }
 
 - (void)loadProfile {
-    __unsafe_unretained __block HomeViewController *safeSelf = self;
-        
-    [self addSection:^(JMStaticContentTableViewSection *section, NSUInteger sectionIndex) {
-        [section addCell:^(JMStaticContentTableViewCell *staticContentCell, UITableViewCell *cell, NSIndexPath *indexPath) {
-            staticContentCell.cellStyle = UITableViewCellStyleSubtitle;
-            staticContentCell.cellHeight = 70;
-            staticContentCell.reuseIdentifier = @"UserInfoCell";
-            
-            cell.textLabel.text = [GPPSignIn sharedInstance].authentication.userEmail;
-            NSString *email = [NSString stringWithFormat:@"%@", [GPPSignIn sharedInstance].authentication.userEmail];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"NetID: %@", [email componentsSeparatedByString:@"@"][0]];
-            cell.imageView.image = [UIImage imageNamed:@"ProfilePicture"];
-        } whenSelected:^(NSIndexPath *indexPath) {
-            [safeSelf.tableView deselectRowAtIndexPath:indexPath animated:YES];
-        }];
-    }];
 
 }
 

@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <RaptureXML/RXMLElement.h>
 #import "IRExplorerEntry.h"
-#import "IRExplorerSectionEntry.h"
 
 @interface IRExplorer : NSObject
 
