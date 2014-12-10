@@ -27,8 +27,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    titles = @[@"Profile", @"Home", @"Monitor", @"Explorer", @"Settings", @"Log Out", @"Test"];
-    icons = @[@"IconProfile", @"IconHome", @"IconProfile", @"IconCalendar", @"IconSettings", @"IconEmpty", @"IconEmpty"];
+    titles = @[@"Profile", @"Home", @"Monitor", @"Explorer", @"Wish List", @"Log Out", @"Test"];
+    icons = @[@"IconProfile", @"IconHome", @"IconMonitor", @"IconCalendar", @"IconWishList", @"IconLogout", @"IconEmpty"];
     
     self.tableView = ({
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, (self.view.frame.size.height - 54 * 5) / 2.0f, self.view.frame.size.width, 54 * 5) style:UITableViewStylePlain];

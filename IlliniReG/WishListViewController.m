@@ -10,6 +10,7 @@
 
 @interface WishListViewController ()
 
+@property (nonatomic) BOOL wishListAndMonitorListLoaded;
 @property (nonatomic, readonly) NSUInteger WishListSectionIndex;
 @property (nonatomic, readonly) NSUInteger MonitorsSectionIndex;
 
@@ -114,15 +115,19 @@
         section.footerTitle = @"These are the monitors generated from your Wish List. Click Submit to confirm creating the monitors above.";
     }];
     
-    
+    _wishListAndMonitorListLoaded = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self loadWishListAndMonitorList];
+    if (!_wishListAndMonitorListLoaded) {
+        [self loadWishListAndMonitorList];
+    }
 }
 
 - (void)loadWishListAndMonitorList {
+    _wishListAndMonitorListLoaded = YES;
+    
     NSString *currentUserNetID = @"_shared";
     NSData *wishListDictionaryData = [[NSUserDefaults standardUserDefaults] objectForKey:@"WishList"];
     NSMutableDictionary *wishListDictionary = [NSKeyedUnarchiver unarchiveObjectWithData:wishListDictionaryData];
