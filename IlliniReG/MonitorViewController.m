@@ -143,7 +143,7 @@
                 currentSectionEntry.crn = [currentSectionDictionary valueForKey:@"crn"];
                 [currentEntries addObject:currentSectionEntry];
             }
-            currentMonitor.entries = [currentEntries copy];
+            currentMonitor.sectionEntries = [currentEntries copy];
             [_monitors addObject:currentMonitor];
         }
         [self updateTableData:sender];
@@ -197,7 +197,7 @@
             staticContentCell.reuseIdentifier = @"MonitorListCell";
             staticContentCell.cellStyle = UITableViewCellStyleSubtitle;
             cell.textLabel.text = currentMonitor.name;
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%zd sections", [currentMonitor.entries count]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%zd sections", [currentMonitor.sectionEntries count]];
             cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         } whenSelected:^(NSIndexPath *indexPath ) {
             MonitorSettingsViewController *currentMonitorSettingsViewController = [[MonitorSettingsViewController alloc] initWithMonitor:currentMonitor];

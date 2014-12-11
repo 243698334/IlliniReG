@@ -188,7 +188,7 @@
 
 - (void)loadSectionList {
     [self.tableView beginUpdates];
-    for (NSUInteger i = 0; i < [_monitor.entries count]; i++) {
+    for (NSUInteger i = 0; i < [_monitor.sectionEntries count]; i++) {
 //        IRSectionEntry *currentSectionEntry = [_monitor.entries objectAtIndex:i];
 //        [self insertCell:^(JMStaticContentTableViewCell *staticContentCell, UITableViewCell *cell, NSIndexPath *indexPath) {
 //            staticContentCell.reuseIdentifier = @"SectionCell";

@@ -30,7 +30,7 @@
 		0E5D1A801A1A18A700715AC5 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5D1A7F1A1A18A700715AC5 /* RootViewController.m */; };
 		0E5D1A831A1A192D00715AC5 /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5D1A821A1A192D00715AC5 /* SideMenuViewController.m */; };
 		0E5D1ABD1A1A1DE100715AC5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E5D1ABC1A1A1DE100715AC5 /* Images.xcassets */; };
-		0EC5ACC61A30E5C800E52219 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0EC5ACC51A30E5C800E52219 /* GooglePlus.bundle */; };
+		0E7DED371A39F81D000C1583 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0E7DED361A39F81D000C1583 /* GooglePlus.bundle */; };
 		0EC5ACCF1A30FAFD00E52219 /* GooglePlusSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC5ACCE1A30FAFD00E52219 /* GooglePlusSignInViewController.m */; };
 		B3E6F105361539E5B63CADB9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3F796071ED070BE4BE93864 /* libPods.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -84,7 +84,7 @@
 		0E5D1A811A1A192D00715AC5 /* SideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuViewController.h; sourceTree = "<group>"; };
 		0E5D1A821A1A192D00715AC5 /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuViewController.m; sourceTree = "<group>"; };
 		0E5D1ABC1A1A1DE100715AC5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		0EC5ACC51A30E5C800E52219 /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GooglePlus.bundle; sourceTree = "<group>"; };
+		0E7DED361A39F81D000C1583 /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GooglePlus.bundle; sourceTree = "<group>"; };
 		0EC5ACCD1A30FAFD00E52219 /* GooglePlusSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GooglePlusSignInViewController.h; sourceTree = "<group>"; };
 		0EC5ACCE1A30FAFD00E52219 /* GooglePlusSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GooglePlusSignInViewController.m; sourceTree = "<group>"; };
 		53DDA61685F27DB71AAEFA65 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -114,7 +114,7 @@
 		0E33B6331A19DB230036F636 = {
 			isa = PBXGroup;
 			children = (
-				0EC5ACC51A30E5C800E52219 /* GooglePlus.bundle */,
+				0E7DED361A39F81D000C1583 /* GooglePlus.bundle */,
 				D02CCD4CC3A585BDB649177F /* Frameworks */,
 				0E33B63E1A19DB230036F636 /* IlliniReG */,
 				0E33B6581A19DB230036F636 /* IlliniReGTests */,
@@ -317,8 +317,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E33B64B1A19DB230036F636 /* Main.storyboard in Resources */,
-				0EC5ACC61A30E5C800E52219 /* GooglePlus.bundle in Resources */,
 				0E5D1ABD1A1A1DE100715AC5 /* Images.xcassets in Resources */,
+				0E7DED371A39F81D000C1583 /* GooglePlus.bundle in Resources */,
 				0E33B6501A19DB230036F636 /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
