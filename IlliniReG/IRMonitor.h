@@ -15,7 +15,7 @@ typedef enum {
     SUCCESS = 2
 } IRMonitorStatus;
 
-@interface IRMonitor : NSObject
+@interface IRMonitor : NSObject <NSCoding>
 
 extern NSString * const MonitorAPI;
 
@@ -27,12 +27,12 @@ extern NSString * const MonitorAPI;
 @property (nonatomic) IRMonitorStatus status;
 @property (nonatomic) BOOL autoRegister;
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSArray *entries;
 @property (nonatomic, copy) NSNumber *refreshFrequency;
 @property (nonatomic, copy) NSString *userAgentContent;
 @property (nonatomic, copy) NSString *userAgentType;
 @property (nonatomic) BOOL pushNotification;
 @property (nonatomic, copy) NSString *smsNumber;
 @property (nonatomic, copy) NSString *email;
+@property (nonatomic, copy) NSArray *sectionEntries;
 
 @end

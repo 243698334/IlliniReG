@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "AppIconFrame.png"
+      "filename" : "Launcher.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "AppIconFrame-1.png"
+      "filename" : "Launcher-1.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "AppIconFrame-2.png"
+      "filename" : "Launcher-2.png"
     }
   ],
   "info" : {
